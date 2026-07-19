@@ -1,0 +1,381 @@
+Last login: Sun Jul 19 21:51:55 on ttys001
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % #!/bin/bash
+
+while true
+do
+    git add .
+    git commit -m "Auto Update $(date)"
+    git push
+    sleep 300
+done
+zsh: event not found: /bin/bash
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % clear
+
+
+
+
+
+
+
+
+
+
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % brew install fswatch
+zsh: command not found: brew
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % fswatch --version
+zsh: command not found: fswatch
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+==> Checking for `sudo` access (which may request your password)...
+Password:
+Sorry, try again.
+Password:
+==> This script will install:
+/opt/homebrew/bin/brew
+/opt/homebrew/share/doc/homebrew
+/opt/homebrew/share/man/man1/brew.1
+/opt/homebrew/share/zsh/site-functions/_brew
+/opt/homebrew/etc/bash_completion.d/brew
+/opt/homebrew
+/etc/paths.d/homebrew
+==> The following new directories will be created:
+/opt/homebrew/bin
+/opt/homebrew/etc
+/opt/homebrew/include
+/opt/homebrew/lib
+/opt/homebrew/sbin
+/opt/homebrew/share
+/opt/homebrew/var
+/opt/homebrew/opt
+/opt/homebrew/share/zsh
+/opt/homebrew/share/zsh/site-functions
+/opt/homebrew/var/homebrew
+/opt/homebrew/var/homebrew/linked
+/opt/homebrew/Cellar
+/opt/homebrew/Caskroom
+/opt/homebrew/Frameworks
+
+Press RETURN/ENTER to continue or any other key to abort:
+==> /usr/bin/sudo /usr/bin/install -d -o root -g wheel -m 0755 /opt/homebrew
+==> /usr/bin/sudo /bin/mkdir -p /opt/homebrew/bin /opt/homebrew/etc /opt/homebrew/include /opt/homebrew/lib /opt/homebrew/sbin /opt/homebrew/share /opt/homebrew/var /opt/homebrew/opt /opt/homebrew/share/zsh /opt/homebrew/share/zsh/site-functions /opt/homebrew/var/homebrew /opt/homebrew/var/homebrew/linked /opt/homebrew/Cellar /opt/homebrew/Caskroom /opt/homebrew/Frameworks
+==> /usr/bin/sudo /bin/chmod ug=rwx /opt/homebrew/bin /opt/homebrew/etc /opt/homebrew/include /opt/homebrew/lib /opt/homebrew/sbin /opt/homebrew/share /opt/homebrew/var /opt/homebrew/opt /opt/homebrew/share/zsh /opt/homebrew/share/zsh/site-functions /opt/homebrew/var/homebrew /opt/homebrew/var/homebrew/linked /opt/homebrew/Cellar /opt/homebrew/Caskroom /opt/homebrew/Frameworks
+==> /usr/bin/sudo /bin/chmod go-w /opt/homebrew/share/zsh /opt/homebrew/share/zsh/site-functions
+==> /usr/bin/sudo /usr/sbin/chown abiyunus /opt/homebrew/bin /opt/homebrew/etc /opt/homebrew/include /opt/homebrew/lib /opt/homebrew/sbin /opt/homebrew/share /opt/homebrew/var /opt/homebrew/opt /opt/homebrew/share/zsh /opt/homebrew/share/zsh/site-functions /opt/homebrew/var/homebrew /opt/homebrew/var/homebrew/linked /opt/homebrew/Cellar /opt/homebrew/Caskroom /opt/homebrew/Frameworks
+==> /usr/bin/sudo /usr/bin/chgrp admin /opt/homebrew/bin /opt/homebrew/etc /opt/homebrew/include /opt/homebrew/lib /opt/homebrew/sbin /opt/homebrew/share /opt/homebrew/var /opt/homebrew/opt /opt/homebrew/share/zsh /opt/homebrew/share/zsh/site-functions /opt/homebrew/var/homebrew /opt/homebrew/var/homebrew/linked /opt/homebrew/Cellar /opt/homebrew/Caskroom /opt/homebrew/Frameworks
+==> /usr/bin/sudo /usr/sbin/chown -R abiyunus:admin /opt/homebrew
+==> Downloading and installing Homebrew...
+remote: Enumerating objects: 347910, done.
+remote: Counting objects: 100% (427/427), done.
+remote: Compressing objects: 100% (230/230), done.
+remote: Total 347910 (delta 252), reused 245 (delta 197), pack-reused 347483 (from 2)
+remote: Enumerating objects: 55, done.
+remote: Counting objects: 100% (33/33), done.
+remote: Total 55 (delta 33), reused 33 (delta 33), pack-reused 22 (from 1)
+==> /usr/bin/sudo /bin/mkdir -p /etc/paths.d
+==> /usr/bin/sudo tee /etc/paths.d/homebrew
+/opt/homebrew/bin
+==> /usr/bin/sudo /usr/sbin/chown root:wheel /etc/paths.d/homebrew
+==> /usr/bin/sudo /bin/chmod a+r /etc/paths.d/homebrew
+==> Updating Homebrew...
+==> Downloading https://ghcr.io/v2/homebrew/core/portable-ruby/blobs/sha256:4ba8d535df01e4bf97e6661c3815796fd77364ea2552606e891659133a76f0e1
+######################################################################### 100.0%
+==> Pouring portable-ruby-4.0.5_1.arm64_big_sur.bottle.tar.gz
+==> Installation successful!
+
+==> Homebrew has enabled anonymous aggregate formulae and cask analytics.
+Read the analytics documentation (and how to opt-out) here:
+  https://docs.brew.sh/Analytics
+No analytics data has been sent yet (nor will any be during this install run).
+
+==> Homebrew is run entirely by unpaid volunteers. Please consider donating:
+  https://github.com/Homebrew/brew#donations
+
+==> Next steps:
+- Run these commands in your terminal to add Homebrew to your PATH:
+    echo >> /Users/abiyunus/.zprofile
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv zsh)"' >> /Users/abiyunus/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+- Run brew help to get started
+- Further documentation:
+    https://docs.brew.sh
+
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 %  eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+- Run brew help to get started
+- Further documentation:
+    https://docs.brew.sh
+zsh: command not found: Run
+zsh: command not found: Further
+zsh: no such file or directory: https://docs.brew.sh
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % brew --version
+Homebrew 6.0.11
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % brew install fswatch
+==> Would install 1 formula:
+fswatch
+==> Downloading https://ghcr.io/v2/homebrew/core/fswatch/manifests/1.21.0
+######################################################################### 100.0%
+==> Fetching downloads for: fswatch
+✔︎ Bottle fswatch (1.21.0)                            Downloaded  345.9KB/345.9KB
+==> Pouring fswatch--1.21.0.arm64_tahoe.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/fswatch/1.21.0: 50 files, 1.3MB
+==> Running `brew cleanup fswatch`...
+Disable this behaviour by setting `HOMEBREW_NO_INSTALL_CLEANUP=1`.
+Hide these hints with `HOMEBREW_NO_ENV_HINTS=1` (see `man brew`).
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % fswatch --version
+fswatch 1.21.0
+Copyright (C) 2013-2025 Enrico M. Crisostomo <enrico.m.crisostomo@gmail.com>.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Enrico M. Crisostomo.
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % ./autopush.sh
+zsh: no such file or directory: ./autopush.sh
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % git remote -v
+fatal: not a git repository (or any of the parent directories): .git
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % ls -la
+total 96
+drwxr-xr-x   9 abiyunus  staff    288 Jul 19 21:53 .
+drwxr-x---+ 24 abiyunus  staff    768 Jul 19 22:04 ..
+-rw-r--r--@  1 abiyunus  staff   6148 Jul 18 21:52 .DS_Store
+-rw-r--r--   1 abiyunus  staff      9 Jul 18 21:51 README.md
+drwxr-xr-x   8 abiyunus  staff    256 Jul 18 20:24 assets
+-rw-r--r--@  1 abiyunus  staff  12422 Jul 19 21:35 index.html
+-rw-r--r--   1 abiyunus  staff   2970 Jul 19 21:38 script.js
+-rw-r--r--   1 abiyunus  staff  11285 Jul 18 21:31 style.css
+-rwxr-xr-x   1 abiyunus  staff     46 Jul 19 21:54 update.sh
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % git init
+Initialized empty Git repository in /Users/abiyunus/abiyunusdiyasayu-wedding-invitation-22-11-2026/.git/
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % git remote add origin https://github.com/USERNAME/abiyunusdiyasayu-wedding-invitation-22-11-2026.git
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % git remote -v
+origin	https://github.com/USERNAME/abiyunusdiyasayu-wedding-invitation-22-11-2026.git (fetch)
+origin	https://github.com/USERNAME/abiyunusdiyasayu-wedding-invitation-22-11-2026.git (push)
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % git add .
+git commit -m "Initial Commit"
+[main (root-commit) aba9c25] Initial Commit
+ Committer: 어비 유누스 <abiyunus@eobis-MacBook-Pro.local>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 9 files changed, 1991 insertions(+)
+ create mode 100644 .DS_Store
+ create mode 100644 README.md
+ create mode 100644 assets/.DS_Store
+ create mode 100644 assets/images/cover.png
+ create mode 100644 assets/music/Denny_Caknan_-_Tunggal_Eka_(mp3.pm).mp3
+ create mode 100644 index.html
+ create mode 100644 script.js
+ create mode 100644 style.css
+ create mode 100755 update.sh
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % git branch -M main
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % git push -u origin main
+remote: Repository not found.
+fatal: repository 'https://github.com/USERNAME/abiyunusdiyasayu-wedding-invitation-22-11-2026.git/' not found
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % ./autopush.sh
+zsh: no such file or directory: ./autopush.sh
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % git remote -v
+origin	https://github.com/USERNAME/abiyunusdiyasayu-wedding-invitation-22-11-2026.git (fetch)
+origin	https://github.com/USERNAME/abiyunusdiyasayu-wedding-invitation-22-11-2026.git (push)
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % git remote remove origin
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % git remote add origin https://abiyunusdiyasayu.github.io/wedding-invitation-22-11-2026/ 
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % git push -u origin main
+fatal: repository 'https://abiyunusdiyasayu.github.io/wedding-invitation-22-11-2026/' not found
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % git remote -v
+origin	https://abiyunusdiyasayu.github.io/wedding-invitation-22-11-2026/ (fetch)
+origin	https://abiyunusdiyasayu.github.io/wedding-invitation-22-11-2026/ (push)
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % git remote remove origin'
+quote> git remote remove origin
+quote> git remote add origin https://github.com/abiyunusdiyasayu/wedding-invitation-22-11-2026
+quote> git remote -v
+quote> 
+quote> git remote -v
+quote> git remote add origin https://github.com/abiyunusdiyasayu/wedding-invitation-22-11-2026.git
+quote> git remote -v
+quote> clear
+quote> clear
+quote> 
+quote> 
+quote> 
+quote> 
+quote> 
+quote> 
+quote> git remote remove origin
+quote> 
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % git remote -v
+origin	https://abiyunusdiyasayu.github.io/wedding-invitation-22-11-2026/ (fetch)
+origin	https://abiyunusdiyasayu.github.io/wedding-invitation-22-11-2026/ (push)
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % git remote remove origin
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % git remote remove origin
+error: No such remote: 'origin'
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % git remote add origin https://github.com/abiyunusdiyasayu/wedding-invitation-22-11-2026.git
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % git remote -v
+origin	https://github.com/abiyunusdiyasayu/wedding-invitation-22-11-2026.git (fetch)
+origin	https://github.com/abiyunusdiyasayu/wedding-invitation-22-11-2026.git (push)
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % git branch -M main
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % git push -u origin main
+To https://github.com/abiyunusdiyasayu/wedding-invitation-22-11-2026.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'https://github.com/abiyunusdiyasayu/wedding-invitation-22-11-2026.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % git push -u origin main
+To https://github.com/abiyunusdiyasayu/wedding-invitation-22-11-2026.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'https://github.com/abiyunusdiyasayu/wedding-invitation-22-11-2026.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % git push -u origin main
+To https://github.com/abiyunusdiyasayu/wedding-invitation-22-11-2026.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'https://github.com/abiyunusdiyasayu/wedding-invitation-22-11-2026.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % 
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % git remote -v
+origin	https://github.com/abiyunusdiyasayu/wedding-invitation-22-11-2026.git (fetch)
+origin	https://github.com/abiyunusdiyasayu/wedding-invitation-22-11-2026.git (push)
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % git branch
+* main
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % git pull origin main --allow-unrelated-histories
+remote: Enumerating objects: 15, done.
+remote: Counting objects: 100% (15/15), done.
+remote: Compressing objects: 100% (10/10), done.
+remote: Total 15 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (15/15), 2.47 MiB | 22.01 MiB/s, done.
+From https://github.com/abiyunusdiyasayu/wedding-invitation-22-11-2026
+ * branch            main       -> FETCH_HEAD
+ * [new branch]      main       -> origin/main
+hint: You have divergent branches and need to specify how to reconcile them.
+hint: You can do so by running one of the following commands sometime before
+hint: your next pull:
+hint:
+hint:   git config pull.rebase false  # merge
+hint:   git config pull.rebase true   # rebase
+hint:   git config pull.ff only       # fast-forward only
+hint:
+hint: You can replace "git config" with "git config --global" to set a default
+hint: preference for all repositories. You can also pass --rebase, --no-rebase,
+hint: or --ff-only on the command line to override the configured default per
+hint: invocation.
+fatal: Need to specify how to reconcile divergent branches.
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % git push -u origin main
+To https://github.com/abiyunusdiyasayu/wedding-invitation-22-11-2026.git
+ ! [rejected]        main -> main (non-fast-forward)
+error: failed to push some refs to 'https://github.com/abiyunusdiyasayu/wedding-invitation-22-11-2026.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. If you want to integrate the remote changes,
+hint: use 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % git push -u origin main --force
+Enumerating objects: 14, done.
+Counting objects: 100% (14/14), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (11/11), done.
+Writing objects: 100% (14/14), 12.65 MiB | 10.70 MiB/s, done.
+Total 14 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (1/1), done.
+To https://github.com/abiyunusdiyasayu/wedding-invitation-22-11-2026.git
+ + 32d5f58...aba9c25 main -> main (forced update)
+branch 'main' set up to track 'origin/main'.
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % git remote -v
+git status
+origin	https://github.com/abiyunusdiyasayu/wedding-invitation-22-11-2026.git (fetch)
+origin	https://github.com/abiyunusdiyasayu/wedding-invitation-22-11-2026.git (push)
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+abiyunus@eobis-MacBook-Pro abiyunusdiyasayu-wedding-invitation-22-11-2026 % touch autopush.sh
+nano autopush.sh
+
+  UW PICO 5.09                                                                                                  File: autopush.sh                                                                                                  Modified  
+
+#!/bin/bash
+
+while true
+do
+    git add .
+
+    if ! git diff --cached --quiet; then
+        git commit -m "Auto Update $(date)"
+        git push
+    fi
+
+    sleep 10
+done                    
+             
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+^G Get Help                            ^O WriteOut                            ^R Read File                           ^Y Prev Pg                             ^K Cut Text                            ^C Cur Pos                             
+^X Exit                                ^J Justify                             ^W Where is                            ^V Next Pg                             ^U UnCut Text                          ^T To Spell                            
