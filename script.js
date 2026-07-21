@@ -1,3 +1,5 @@
+alert("script.js berhasil dimuat");
+
 // ======================
 // LOADER
 // ======================
