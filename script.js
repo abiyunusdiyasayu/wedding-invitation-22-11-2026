@@ -1,5 +1,3 @@
-alert("script.js berhasil dimuat");
-
 // ======================
 // LOADER
 // ======================
@@ -330,3 +328,29 @@ function streamAlert() {
     );
 
 }
+
+document.addEventListener(
+    "DOMContentLoaded",
+
+    () => {
+
+        const button =
+        document.getElementById(
+            "openInvitation"
+        );
+
+        if(button){
+
+            button.onclick =
+            function(){
+
+                alert(
+                    "Buka Undangan berhasil!"
+                );
+
+            };
+
+        }
+
+    }
+);
