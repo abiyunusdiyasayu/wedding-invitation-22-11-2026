@@ -27,6 +27,19 @@ window.addEventListener(
 
 );
 
+const cover = document.querySelector(".cover");
+const hero = document.querySelector(".hero");
+const button = document.querySelector("openInvitation");
+
+hero.style.display = "none";
+
+button.addEventListener("click", () => {
+
+    cover.style.display = "none";
+    hero.style.display = "block";
+
+});
+
 // ======================
 // OPEN INVITATION
 // ======================
