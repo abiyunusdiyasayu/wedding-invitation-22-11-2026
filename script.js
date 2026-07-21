@@ -288,7 +288,7 @@ if (music && musicButton) {
 function streamAlert() {
 
     alert(
-        "Live streaming akan tersedia mendekati hari acara."
+        "Sementara dereng wonten nggeh."
     );
 
 }
