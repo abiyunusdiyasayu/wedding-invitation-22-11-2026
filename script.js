@@ -27,18 +27,26 @@ window.addEventListener(
 
 );
 
-const cover = document.querySelector(".cover");
-const hero = document.querySelector(".hero");
-const button = document.querySelector("openInvitation");
+const cover = document.getElementById("cover");
+const invitationContent =
+document.getElementById("invitationContent");
 
-hero.style.display = "none";
+const button =
+document.getElementById("openInvitation");
 
-button.addEventListener("click", () => {
+invitationContent.style.display = "none";
 
-    cover.style.display = "none";
-    hero.style.display = "block";
+button.addEventListener(
+    "click",
+    () => {
 
-});
+        cover.style.display = "none";
+
+        invitationContent.style.display =
+        "block";
+
+    }
+);
 
 // ======================
 // OPEN INVITATION
