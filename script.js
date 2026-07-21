@@ -36,6 +36,11 @@ document.getElementById(
     "openInvitation"
 );
 
+const invitationContent =
+document.getElementById(
+    "invitationContent"
+);
+
 if (openInvitation) {
 
     openInvitation
@@ -45,7 +50,7 @@ if (openInvitation) {
 
         () => {
 
-            // Hilangkan Cover
+            // Hilangkan cover
             document
             .getElementById(
                 "cover"
@@ -53,15 +58,22 @@ if (openInvitation) {
             .style.display =
             "none";
 
-            // Jalankan Musik
-            // sementara dihapus karena musik tidak otomatis berjalan di beberapa browser
+            // Tampilkan isi undangan
+            invitationContent
+            .style.display =
+            "block";
 
-            // Scroll ke Quran
-            document
-            .getElementById(
-                "quran"
-            )
-            .scrollIntoView({
+            // Putar musik
+            if(music){
+
+                music.play();
+
+            }
+
+            // Scroll ke atas
+            window.scrollTo({
+
+                top:0,
 
                 behavior:
                 "smooth"
