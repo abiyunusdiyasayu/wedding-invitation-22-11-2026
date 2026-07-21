@@ -43,50 +43,24 @@ button.addEventListener("click", () => {
 // ======================
 // OPEN INVITATION
 // ======================
-
 const openInvitation =
 document.getElementById(
     "openInvitation"
 );
 
-const invitationContent =
-document.getElementById(
-    "invitationContent"
-);
+console.log(openInvitation);
 
-if(openInvitation){
+if (openInvitation) {
 
-    openInvitation
-    .addEventListener(
+    openInvitation.addEventListener(
 
         "click",
 
-        ()=>{
+        () => {
 
-            document
-            .getElementById(
-                "cover"
-            )
-            .style.display =
-            "none";
-
-            invitationContent
-            .style.display =
-            "block";
-
-            if(music){
-
-                music.play();
-
-            }
-
-            window.scrollTo({
-
-                top:0,
-
-                behavior:"smooth"
-
-            });
+            alert(
+                "Tombol berhasil diklik!"
+            );
 
         }
 
