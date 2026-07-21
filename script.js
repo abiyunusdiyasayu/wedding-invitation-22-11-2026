@@ -324,7 +324,7 @@ if (
 function streamAlert() {
 
     alert(
-        "Live streaming sementara belum tersedia. Silakan kunjungi kembali menjelang hari H."
+        "Sementara dereng wonten."
     );
 
 }
