@@ -27,23 +27,45 @@ window.addEventListener(
 
 );
 
-const cover = document.getElementById("cover");
-const invitationContent =
-document.getElementById("invitationContent");
-
-const button =
-document.getElementById("openInvitation");
-
-invitationContent.style.display = "none";
-
-button.addEventListener(
-    "click",
+document.addEventListener(
+    "DOMContentLoaded",
     () => {
 
-        cover.style.display = "none";
+        const cover =
+        document.getElementById("cover");
 
-        invitationContent.style.display =
-        "block";
+        const content =
+        document.getElementById(
+            "invitationContent"
+        );
+
+        const button =
+        document.getElementById(
+            "openInvitation"
+        );
+
+        const music =
+        document.getElementById(
+            "bgMusic"
+        );
+
+        content.style.display =
+        "none";
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                cover.style.display =
+                "none";
+
+                content.style.display =
+                "block";
+
+                music.play();
+
+            }
+        );
 
     }
 );
