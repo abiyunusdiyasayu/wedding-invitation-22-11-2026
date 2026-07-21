@@ -2,175 +2,118 @@
 // LOADER
 // ======================
 
-window.addEventListener(
-    "load",
+window.addEventListener("load", () => {
+    const loader = document.getElementById("loader");
 
-    () => {
-
-        const loader =
-        document.getElementById(
-            "loader"
-        );
-
-        if (loader) {
-
-            setTimeout(() => {
-
-                loader.style.display =
-                "none";
-
-            }, 500);
-
-        }
-
+    if (loader) {
+        setTimeout(() => {
+            loader.style.display = "none";
+        }, 500);
     }
-
-);
-
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
-
-        const cover =
-        document.getElementById("cover");
-
-        const content =
-        document.getElementById(
-            "invitationContent"
-        );
-
-        const button =
-        document.getElementById(
-            "openInvitation"
-        );
-
-        const music =
-        document.getElementById(
-            "bgMusic"
-        );
-
-        content.style.display =
-        "none";
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                cover.style.display =
-                "none";
-
-                content.style.display =
-                "block";
-
-                music.play();
-
-            }
-        );
-
-    }
-);
+});
 
 // ======================
 // OPEN INVITATION
 // ======================
-const openInvitation =
-document.getElementById(
-    "openInvitation"
-);
 
-console.log(openInvitation);
+document.addEventListener("DOMContentLoaded", () => {
 
-if (openInvitation) {
+    const cover = document.getElementById("cover");
+    const content = document.getElementById("invitationContent");
+    const button = document.getElementById("openInvitation");
+    const music = document.getElementById("bgMusic");
 
-    openInvitation.addEventListener(
+    if (content) {
+        content.style.display = "none";
+    }
 
-        "click",
+    if (button) {
 
-        () => {
+        button.addEventListener("click", () => {
 
-            alert(
-                "Tombol berhasil diklik!"
-            );
+            if (cover) {
+                cover.style.display = "none";
+            }
 
-        }
+            if (content) {
+                content.style.display = "block";
 
-    );
+                content.scrollIntoView({
+                    behavior: "smooth"
+                });
+            }
 
-}
+            if (music) {
+                music.play().catch(() => {
+                    console.log(
+                        "Autoplay diblokir browser."
+                    );
+                });
+            }
+
+            button.style.display = "none";
+        });
+
+    }
+
+});
 
 // ======================
 // COUNTDOWN
 // ======================
 
 const targetDate =
-new Date(
-    "November 22, 2026 08:00:00"
-);
+new Date("November 22, 2026 08:00:00");
 
-setInterval(() => {
+const countdown = setInterval(() => {
 
-    const now =
-    new Date().getTime();
+    const now = new Date().getTime();
+    const distance = targetDate - now;
 
-    const distance =
-    targetDate - now;
+    if (distance < 0) {
 
-    const days =
-    Math.floor(
-        distance /
-        (1000 * 60 * 60 * 24)
+        clearInterval(countdown);
+
+        document.getElementById("days").innerHTML = 0;
+        document.getElementById("hours").innerHTML = 0;
+        document.getElementById("minutes").innerHTML = 0;
+        document.getElementById("seconds").innerHTML = 0;
+
+        return;
+    }
+
+    const days = Math.floor(
+        distance / (1000 * 60 * 60 * 24)
     );
 
-    const hours =
-    Math.floor(
-        (
-            distance %
-            (1000 * 60 * 60 * 24)
-        ) /
+    const hours = Math.floor(
+        (distance %
+            (1000 * 60 * 60 * 24)) /
         (1000 * 60 * 60)
     );
 
-    const minutes =
-    Math.floor(
-        (
-            distance %
-            (1000 * 60 * 60)
-        ) /
+    const minutes = Math.floor(
+        (distance %
+            (1000 * 60 * 60)) /
         (1000 * 60)
     );
 
-    const seconds =
-    Math.floor(
-        (
-            distance %
-            (1000 * 60)
-        ) / 1000
+    const seconds = Math.floor(
+        (distance %
+            (1000 * 60)) / 1000
     );
 
-    const day =
-    document.getElementById(
-        "days"
-    );
+    document.getElementById("days").innerHTML =
+        days;
 
-    const hour =
-    document.getElementById(
-        "hours"
-    );
+    document.getElementById("hours").innerHTML =
+        hours;
 
-    const minute =
-    document.getElementById(
-        "minutes"
-    );
+    document.getElementById("minutes").innerHTML =
+        minutes;
 
-    const second =
-    document.getElementById(
-        "seconds"
-    );
-
-    if (day) day.innerHTML = days;
-    if (hour) hour.innerHTML = hours;
-    if (minute) minute.innerHTML = minutes;
-    if (second) second.innerHTML = seconds;
+    document.getElementById("seconds").innerHTML =
+        seconds;
 
 }, 1000);
 
@@ -178,16 +121,15 @@ setInterval(() => {
 // COPY TEXT
 // ======================
 
-function copyText(
-    text,
-    message
-) {
+function copyText(text, message) {
 
-    navigator
-    .clipboard
-    .writeText(text);
+    navigator.clipboard
+        .writeText(text)
+        .then(() => {
 
-    alert(message);
+            alert(message);
+
+        });
 
 }
 
@@ -210,7 +152,7 @@ document.getElementById(
     "lightbox-image"
 );
 
-if (lightbox) {
+if (lightbox && lightboxImage) {
 
     galleryImages.forEach(
         (image) => {
@@ -221,10 +163,10 @@ if (lightbox) {
                 () => {
 
                     lightbox.style.display =
-                    "flex";
+                        "flex";
 
                     lightboxImage.src =
-                    image.src;
+                        image.src;
 
                 }
 
@@ -234,13 +176,12 @@ if (lightbox) {
     );
 
     lightbox.addEventListener(
-
         "click",
 
         () => {
 
             lightbox.style.display =
-            "none";
+                "none";
 
         }
 
@@ -260,42 +201,36 @@ document.getElementById(
 if (rsvpForm) {
 
     rsvpForm.addEventListener(
-
         "submit",
 
-        function (e) {
+        (e) => {
 
             e.preventDefault();
 
             const name =
-            document
-            .getElementById(
-                "name"
-            ).value;
+                document.getElementById(
+                    "name"
+                ).value;
 
             const attendance =
-            document
-            .getElementById(
-                "attendance"
-            ).value;
+                document.getElementById(
+                    "attendance"
+                ).value;
 
             const message =
-            document
-            .getElementById(
-                "message"
-            ).value;
+                document.getElementById(
+                    "message"
+                ).value;
 
             const whatsappURL =
-
-                `https://wa.me/6281574397472?text=
-Nama:%20${name}%0A
-Kehadiran:%20${attendance}%0A
-Pesan:%20${message}`;
+                `https://wa.me/6281574397472?text=Nama:%20${name}%0AKehadiran:%20${attendance}%0APesan:%20${message}`;
 
             window.open(
                 whatsappURL,
                 "_blank"
             );
+
+            rsvpForm.reset();
 
         }
 
@@ -304,7 +239,7 @@ Pesan:%20${message}`;
 }
 
 // ======================
-// MUSIC
+// MUSIC BUTTON
 // ======================
 
 const music =
@@ -317,27 +252,26 @@ document.getElementById(
     "musicButton"
 );
 
-if (
-    music &&
-    musicButton
-) {
+if (music && musicButton) {
 
-    musicButton
-    .addEventListener(
-
+    musicButton.addEventListener(
         "click",
 
         () => {
 
-            if (
-                music.paused
-            ) {
+            if (music.paused) {
 
                 music.play();
+
+                musicButton.innerHTML =
+                    "❚❚";
 
             } else {
 
                 music.pause();
+
+                musicButton.innerHTML =
+                    "♪";
 
             }
 
@@ -354,33 +288,7 @@ if (
 function streamAlert() {
 
     alert(
-        "Sementara dereng wonten."
+        "Live streaming akan tersedia mendekati hari acara."
     );
 
 }
-
-document.addEventListener(
-    "DOMContentLoaded",
-
-    () => {
-
-        const button =
-        document.getElementById(
-            "openInvitation"
-        );
-
-        if(button){
-
-            button.onclick =
-            function(){
-
-                alert(
-                    "Buka Undangan berhasil!"
-                );
-
-            };
-
-        }
-
-    }
-);
