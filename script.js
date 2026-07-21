@@ -54,16 +54,15 @@ document.getElementById(
     "invitationContent"
 );
 
-if (openInvitation) {
+if(openInvitation){
 
     openInvitation
     .addEventListener(
 
         "click",
 
-        () => {
+        ()=>{
 
-            // Hilangkan cover
             document
             .getElementById(
                 "cover"
@@ -71,25 +70,21 @@ if (openInvitation) {
             .style.display =
             "none";
 
-            // Tampilkan isi undangan
             invitationContent
             .style.display =
             "block";
 
-            // Putar musik
             if(music){
 
                 music.play();
 
             }
 
-            // Scroll ke atas
             window.scrollTo({
 
                 top:0,
 
-                behavior:
-                "smooth"
+                behavior:"smooth"
 
             });
 
