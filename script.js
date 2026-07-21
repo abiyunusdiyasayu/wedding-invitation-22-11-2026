@@ -1,28 +1,89 @@
+// ======================
+// LOADER
+// ======================
+
 window.addEventListener(
     "load",
 
-    ()=>{
+    () => {
 
-        setTimeout(()=>{
+        const loader =
+        document.getElementById(
+            "loader"
+        );
 
-            document
-            .getElementById(
-                "loader"
-            )
-            .style.display=
-            "none";
+        if (loader) {
 
-        },2000);
+            setTimeout(() => {
+
+                loader.style.display =
+                "none";
+
+            }, 500);
+
+        }
 
     }
-)
+
+);
+
+// ======================
+// OPEN INVITATION
+// ======================
+
+const openInvitation =
+document.getElementById(
+    "openInvitation"
+);
+
+if (openInvitation) {
+
+    openInvitation
+    .addEventListener(
+
+        "click",
+
+        () => {
+
+            // Hilangkan Cover
+            document
+            .getElementById(
+                "cover"
+            )
+            .style.display =
+            "none";
+
+            // Jalankan Musik
+            // sementara dihapus karena musik tidak otomatis berjalan di beberapa browser
+
+            // Scroll ke Quran
+            document
+            .getElementById(
+                "quran"
+            )
+            .scrollIntoView({
+
+                behavior:
+                "smooth"
+
+            });
+
+        }
+
+    );
+
+}
+
+// ======================
+// COUNTDOWN
+// ======================
 
 const targetDate =
 new Date(
-    "November 22, 2026 10:00:00"
+    "November 22, 2026 08:00:00"
 );
 
-setInterval(()=>{
+setInterval(() => {
 
     const now =
     new Date().getTime();
@@ -33,76 +94,82 @@ setInterval(()=>{
     const days =
     Math.floor(
         distance /
-        (1000*60*60*24)
+        (1000 * 60 * 60 * 24)
     );
 
     const hours =
     Math.floor(
         (
             distance %
-            (1000*60*60*24)
-        )
-        /
-        (1000*60*60)
+            (1000 * 60 * 60 * 24)
+        ) /
+        (1000 * 60 * 60)
     );
 
     const minutes =
     Math.floor(
         (
             distance %
-            (1000*60*60)
-        )
-        /
-        (1000*60)
+            (1000 * 60 * 60)
+        ) /
+        (1000 * 60)
     );
 
     const seconds =
     Math.floor(
         (
             distance %
-            (1000*60)
-        )
-        /
-        1000
+            (1000 * 60)
+        ) / 1000
     );
 
-    document
-    .getElementById(
+    const day =
+    document.getElementById(
         "days"
-    ).innerHTML=
-    days;
+    );
 
-    document
-    .getElementById(
+    const hour =
+    document.getElementById(
         "hours"
-    ).innerHTML=
-    hours;
+    );
 
-    document
-    .getElementById(
+    const minute =
+    document.getElementById(
         "minutes"
-    ).innerHTML=
-    minutes;
+    );
 
-    document
-    .getElementById(
+    const second =
+    document.getElementById(
         "seconds"
-    ).innerHTML=
-    seconds;
+    );
 
-},1000);
+    if (day) day.innerHTML = days;
+    if (hour) hour.innerHTML = hours;
+    if (minute) minute.innerHTML = minutes;
+    if (second) second.innerHTML = seconds;
 
-function copyText(text){
+}, 1000);
+
+// ======================
+// COPY TEXT
+// ======================
+
+function copyText(
+    text,
+    message
+) {
 
     navigator
     .clipboard
     .writeText(text);
 
-    alert(
-        "Nomor rekening berhasil disalin!"
-    );
+    alert(message);
 
 }
+
+// ======================
+// GALLERY LIGHTBOX
+// ======================
 
 const galleryImages =
 document.querySelectorAll(
@@ -119,86 +186,102 @@ document.getElementById(
     "lightbox-image"
 );
 
-galleryImages.forEach(
-    (image)=>{
+if (lightbox) {
 
-        image.addEventListener(
+    galleryImages.forEach(
+        (image) => {
 
-            "click",
+            image.addEventListener(
+                "click",
 
-            ()=>{
+                () => {
 
-                lightbox.style.display =
-                "flex";
+                    lightbox.style.display =
+                    "flex";
 
-                lightboxImage.src =
-                image.src;
+                    lightboxImage.src =
+                    image.src;
 
-            }
+                }
 
-        );
+            );
 
-    }
-);
+        }
+    );
 
-lightbox.addEventListener(
+    lightbox.addEventListener(
 
-    "click",
+        "click",
 
-    ()=>{
+        () => {
 
-        lightbox.style.display =
-        "none";
+            lightbox.style.display =
+            "none";
 
-    }
+        }
 
-);
+    );
 
-document
-.getElementById(
+}
+
+// ======================
+// RSVP
+// ======================
+
+const rsvpForm =
+document.getElementById(
     "rsvpForm"
-)
-.addEventListener(
+);
 
-    "submit",
+if (rsvpForm) {
 
-    function(e){
+    rsvpForm.addEventListener(
 
-        e.preventDefault();
+        "submit",
 
-        const name =
-        document
-        .getElementById(
-            "name"
-        ).value;
+        function (e) {
 
-        const attendance =
-        document
-        .getElementById(
-            "attendance"
-        ).value;
+            e.preventDefault();
 
-        const message =
-        document
-        .getElementById(
-            "message"
-        ).value;
+            const name =
+            document
+            .getElementById(
+                "name"
+            ).value;
 
-        const whatsappURL =
+            const attendance =
+            document
+            .getElementById(
+                "attendance"
+            ).value;
 
-        `https://wa.me/6281574397472?text=
+            const message =
+            document
+            .getElementById(
+                "message"
+            ).value;
+
+            const whatsappURL =
+
+                `https://wa.me/6281574397472?text=
 Nama:%20${name}%0A
 Kehadiran:%20${attendance}%0A
 Pesan:%20${message}`;
 
-        window.open(
-            whatsappURL,
-            "_blank"
-        );
+            window.open(
+                whatsappURL,
+                "_blank"
+            );
 
-    }
+        }
 
-);
+    );
+
+}
+
+// ======================
+// MUSIC
+// ======================
 
 const music =
 document.getElementById(
@@ -210,25 +293,44 @@ document.getElementById(
     "musicButton"
 );
 
-musicButton.addEventListener(
+if (
+    music &&
+    musicButton
+) {
 
-    "click",
+    musicButton
+    .addEventListener(
 
-    ()=>{
+        "click",
 
-        if(music.paused){
+        () => {
 
-            music.play();
+            if (
+                music.paused
+            ) {
 
-        }else{
+                music.play();
 
-            music.pause();
+            } else {
+
+                music.pause();
+
+            }
 
         }
 
-    }
+    );
 
-);
+}
 
+// ======================
+// LIVE STREAMING
+// ======================
 
+function streamAlert() {
 
+    alert(
+        "Live streaming sementara belum tersedia. Silakan kunjungi kembali menjelang hari H."
+    );
+
+}

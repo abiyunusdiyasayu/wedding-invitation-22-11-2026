@@ -367,13 +367,12 @@
             <h4>501185969774</h4>
 
             <button
-            onclick="
-            copyText(
-            '501185969774'
-            )">
-
+                onclick="
+                copyText(
+                '501185969774',
+                'Nomor rekening telah disalin.'
+                )">
                 Salin Rekening
-
             </button>
 
         </div>
@@ -395,11 +394,10 @@
             <button
             onclick="
             copyText(
-            '670601005062534'
+            '670601005062534',
+            'Nomor rekening telah disalin.'
             )">
-
-                Salin Rekening
-
+            Salin Rekening
             </button>
 
         </div>
@@ -428,11 +426,10 @@
             <button
             onclick="
             copyText(
-            'Ngampel RT.04/RW.14, Gentungan, Mojogedang, Karanganyar, Jawa Tengah 57752'
+            'Ngampel RT.04/RW.14...',
+            'Alamat telah disalin.'
             )">
-
-                Salin Alamat
-
+            Salin Alamat
             </button>
 
         </div>
@@ -604,14 +601,16 @@ Tuliskan doa dan harapan...">
             Pukul 08.00 WIB
         </p>
 
-        <a
-        href="#"
-        target="_blank"
-        class="stream-button">
+        <button
+        class="stream-button"
 
-            Tonton Live Streaming
+        onclick="
+        streamAlert()
+        ">
 
-        </a>
+        Tonton Live Streaming
+
+        </button>
 
     </div>
 
@@ -646,9 +645,6 @@ Tuliskan doa dan harapan...">
     </p>
 
 </footer>
-
-    <!-- JAVASCRIPT -->
-    <script src="script.js"></script>
 
 <div id="lightbox">
 
@@ -688,8 +684,9 @@ loop>
 
 </nav>
 
-<!-- TEST AUTO PUSH -->
- <!-- TEST LAGI -->
+
+    <!-- JAVASCRIPT -->
+<script src="script.js"></script>
 
 </body>
 </html>
