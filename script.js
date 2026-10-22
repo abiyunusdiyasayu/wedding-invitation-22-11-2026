@@ -1,16 +1,27 @@
-// ======================
-// LOADER
-// ======================
 
-window.addEventListener("load", () => {
+/* ======================
+   LOADER
+====================== */
+
+function hideLoader() {
     const loader = document.getElementById("loader");
+    const cover = document.getElementById("cover");
 
     if (loader) {
-        setTimeout(() => {
-            loader.style.display = "none";
-        }, 500);
+        loader.style.display = "none";
     }
-});
+
+    if (cover) {
+        cover.style.display = "flex";
+        cover.style.visibility = "visible";
+        cover.style.opacity = "1";
+    }
+}
+
+window.addEventListener("load", hideLoader);
+
+// Pengaman jika event load tidak berjalan
+setTimeout(hideLoader, 5000);
 
 // ======================
 // OPEN INVITATION
