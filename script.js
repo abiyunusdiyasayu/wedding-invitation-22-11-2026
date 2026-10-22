@@ -1,1655 +1,305 @@
-/* ================================================= */
-/* ROOT */
-/* ================================================= */
 
-:root{
+/* ======================
+   LOADER
+====================== */
 
-    --ivory:#F8F6F2;
+function hideLoader() {
+    const loader = document.getElementById("loader");
+    const cover = document.getElementById("cover");
 
-    --white:#FFFFFF;
+    if (loader) {
+        loader.style.display = "none";
+    }
 
-    --gold:#C5A572;
-
-    --gold-dark:#A8874F;
-
-    --olive:#7A8471;
-
-    --olive-dark:#5E6658;
-
-    --text:#2E2E2E;
-
-    --text-light:#666666;
-
-    --border:#E8E4DD;
-
-    --heading:'Cormorant Garamond',serif;
-
-    --body:'Poppins',sans-serif;
-
-    --shadow:
-    0 12px 30px rgba(0,0,0,.08);
-
-    --radius:20px;
-
-    --transition:.35s ease;
-
+    if (cover) {
+        cover.style.display = "flex";
+        cover.style.visibility = "visible";
+        cover.style.opacity = "1";
+    }
 }
 
+window.addEventListener("load", hideLoader);
 
-/* ================================================= */
-/* RESET */
-/* ================================================= */
+// Pengaman jika event load tidak berjalan
+setTimeout(hideLoader, 5000);
 
-*{
+// ======================
+// OPEN INVITATION
+// ======================
 
-    margin:0;
+document.addEventListener("DOMContentLoaded", () => {
 
-    padding:0;
+    const cover = document.getElementById("cover");
+    const content = document.getElementById("invitationContent");
+    const button = document.getElementById("openInvitation");
+    const music = document.getElementById("bgMusic");
 
-    box-sizing:border-box;
+    if (content) {
+        content.style.display = "none";
+    }
 
-}
+    if (button) {
 
-html{
+        button.addEventListener("click", () => {
 
-    scroll-behavior:smooth;
+            if (cover) {
+                cover.style.display = "none";
+            }
 
-}
+            if (content) {
+                content.style.display = "block";
 
-body{
+                content.scrollIntoView({
+                    behavior: "smooth"
+                });
+            }
 
-    font-family:var(--body);
+            if (music) {
+                music.play().catch(() => {
+                    console.log(
+                        "Autoplay diblokir browser."
+                    );
+                });
+            }
 
-    background:var(--ivory);
+            button.style.display = "none";
+        });
 
-    color:var(--text);
+    }
 
-    overflow-x:hidden;
+});
 
-}
+// ======================
+// COUNTDOWN
+// ======================
 
+const targetDate =
+new Date("November 22, 2026 08:00:00");
 
-/* ================================================= */
-/* INVITATION CONTENT */
-/* ================================================= */
+const countdown = setInterval(() => {
 
-#invitationContent{
+    const now = new Date().getTime();
+    const distance = targetDate - now;
 
-    display:none;
+    if (distance < 0) {
 
-}
+        clearInterval(countdown);
 
+        document.getElementById("days").innerHTML = 0;
+        document.getElementById("hours").innerHTML = 0;
+        document.getElementById("minutes").innerHTML = 0;
+        document.getElementById("seconds").innerHTML = 0;
 
-/* ================================================= */
-/* LOADER */
-/* ================================================= */
+        return;
+    }
 
-#loader{
-
-    position:fixed;
-
-    inset:0;
-
-    width:100%;
-
-    height:100%;
-
-    min-height:100dvh;
-
-    background:
-    linear-gradient(
-        180deg,
-        #F8F6F2 0%,
-        #FDFBF8 100%
+    const days = Math.floor(
+        distance / (1000 * 60 * 60 * 24)
     );
 
-    display:flex;
+    const hours = Math.floor(
+        (distance %
+            (1000 * 60 * 60 * 24)) /
+        (1000 * 60 * 60)
+    );
 
-    justify-content:center;
+    const minutes = Math.floor(
+        (distance %
+            (1000 * 60 * 60)) /
+        (1000 * 60)
+    );
 
-    align-items:center;
+    const seconds = Math.floor(
+        (distance %
+            (1000 * 60)) / 1000
+    );
 
-    text-align:center;
+    document.getElementById("days").innerHTML =
+        days;
 
-    z-index:99999;
+    document.getElementById("hours").innerHTML =
+        hours;
 
-    opacity:1;
+    document.getElementById("minutes").innerHTML =
+        minutes;
 
-    visibility:visible;
+    document.getElementById("seconds").innerHTML =
+        seconds;
 
-    pointer-events:auto;
+}, 1000);
 
-    transition:
-        opacity .8s ease,
-        visibility .8s ease;
+// ======================
+// COPY TEXT
+// ======================
 
-}
-
-
-/* Loader ketika selesai */
-
-#loader.hidden{
-
-    opacity:0;
-
-    visibility:hidden;
-
-    pointer-events:none;
-
-}
-
-
-/* Isi loader */
-
-.loader-content{
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    justify-content:center;
-
-}
-
-
-/* Bismillah */
-
-#loader h2{
-
-    font-family:'Amiri',serif;
-
-    font-size:48px;
-
-    color:var(--gold);
-
-    margin-bottom:25px;
-
-    letter-spacing:2px;
-
-    animation:
-        fadeInUp 1.2s ease both;
-
-}
-
-
-/* Spinner */
-
-.spinner{
-
-    width:55px;
-
-    height:55px;
-
-    border:
-        4px solid
-        rgba(197,165,114,.15);
-
-    border-top:
-        4px solid
-        var(--gold);
-
-    border-radius:50%;
-
-    animation:
-        spin 1.2s linear infinite;
-
-}
-
-
-/* Tulisan loader */
-
-.loader-content p{
-
-    margin-top:22px;
-
-    font-family:
-        var(--heading);
-
-    font-size:20px;
-
-    letter-spacing:3px;
-
-    color:var(--olive);
-
-    animation:
-        fadeInUp 1.2s ease .2s both;
-
-}
-
-
-/* Animations */
-
-@keyframes spin{
-
-    from{
-
-        transform:rotate(0deg);
-
-    }
-
-    to{
-
-        transform:rotate(360deg);
-
-    }
-
-}
-
-
-@keyframes fadeInUp{
-
-    from{
-
-        opacity:0;
-
-        transform:
-            translateY(20px);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:
-            translateY(0);
-
-    }
-
-}
-
-
-/* ================================================= */
-/* COVER */
-/* ================================================= */
-
-#cover{
-
-    min-height:100vh;
-
-    min-height:100dvh;
-
-    background:
-
-    linear-gradient(
-        rgba(248,246,242,.60),
-        rgba(248,246,242,.60)
-    ),
-
-    url("assets/images/cover.jpg");
-
-    background-size:cover;
-
-    background-position:center;
-
-    background-repeat:no-repeat;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    text-align:center;
-
-    padding:30px;
-
-}
-
-
-/* ================================================= */
-/* COVER CONTENT */
-/* ================================================= */
-
-.overlay{
-
-    max-width:700px;
-
-}
-
-
-.small-title{
-
-    letter-spacing:5px;
-
-    color:var(--olive);
-
-    margin-bottom:20px;
-
-}
-
-
-#cover h1{
-
-    font-family:
-        var(--heading);
-
-    font-size:4rem;
-
-    line-height:1.1;
-
-    margin-bottom:20px;
-
-}
-
-
-#cover h1 span{
-
-    display:block;
-
-    color:var(--gold);
-
-    margin:10px 0;
-
-}
-
-
-.tagline{
-
-    font-size:1.1rem;
-
-    margin-bottom:20px;
-
-    color:var(--olive);
-
-}
-
-
-.date{
-
-    margin-bottom:30px;
-
-    font-weight:600;
-
-}
-
-
-.guest{
-
-    margin-bottom:30px;
-
-    line-height:1.8;
-
-}
-
-
-#openInvitation{
-
-    border:none;
-
-    background:var(--gold);
-
-    color:white;
-
-    padding:15px 35px;
-
-    border-radius:50px;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-    font-family:var(--body);
-
-}
-
-
-#openInvitation:hover{
-
-    transform:
-        translateY(-3px);
-
-    box-shadow:
-        0 10px 20px
-        rgba(0,0,0,.1);
-
-}
-
-
-/* ================================================= */
-/* QURAN */
-/* ================================================= */
-
-#quran{
-
-    padding:100px 30px;
-
-    text-align:center;
-
-}
-
-
-#quran h2{
-
-    font-family:'Amiri',serif;
-
-    font-size:2rem;
-
-    color:var(--gold);
-
-    margin-bottom:30px;
-
-}
-
-
-#quran p{
-
-    max-width:700px;
-
-    margin:0 auto 20px;
-
-    line-height:2;
-
-}
-
-
-#quran span{
-
-    color:var(--olive);
-
-}
-
-
-/* ================================================= */
-/* COUPLE */
-/* ================================================= */
-
-#couple{
-
-    padding:100px 30px;
-
-    display:flex;
-
-    gap:50px;
-
-    justify-content:center;
-
-    flex-wrap:wrap;
-
-}
-
-
-.card{
-
-    width:350px;
-
-    background:white;
-
-    border-radius:20px;
-
-    overflow:hidden;
-
-    box-shadow:
-        0 10px 30px
-        rgba(0,0,0,.08);
-
-    text-align:center;
-
-}
-
-
-.card img{
-
-    width:100%;
-
-    height:400px;
-
-    object-fit:cover;
-
-}
-
-
-.card h3{
-
-    padding-top:20px;
-
-    font-family:
-        var(--heading);
-
-    font-size:2rem;
-
-}
-
-
-.card p{
-
-    padding:20px 30px 30px;
-
-    line-height:1.8;
-
-}
-
-
-/* ================================================= */
-/* COUNTDOWN */
-/* ================================================= */
-
-#countdown{
-
-    padding:100px 30px;
-
-    text-align:center;
-
-}
-
-
-.section-title{
-
-    color:var(--olive);
-
-    letter-spacing:3px;
-
-    margin-bottom:20px;
-
-}
-
-
-#countdown h2{
-
-    font-size:3rem;
-
-    font-family:var(--heading);
-
-    margin-bottom:50px;
-
-}
-
-
-.countdown-container{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:20px;
-
-    flex-wrap:wrap;
-
-}
-
-
-.time-box{
-
-    width:120px;
-
-    padding:30px;
-
-    background:white;
-
-    border-radius:20px;
-
-    box-shadow:
-        0 10px 30px
-        rgba(0,0,0,.08);
-
-}
-
-
-.time-box span{
-
-    font-size:2rem;
-
-    color:var(--gold);
-
-    font-weight:700;
-
-}
-
-
-/* ================================================= */
-/* JOURNEY */
-/* ================================================= */
-
-#journey{
-
-    padding:100px 30px;
-
-    background:white;
-
-}
-
-
-#journey h2{
-
-    text-align:center;
-
-    font-size:3rem;
-
-    margin-bottom:60px;
-
-    font-family:var(--heading);
-
-}
-
-
-.timeline{
-
-    max-width:900px;
-
-    margin:auto;
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(250px,1fr)
-        );
-
-    gap:30px;
-
-}
-
-
-.timeline-item{
-
-    background:#F8F6F2;
-
-    padding:30px;
-
-    border-radius:20px;
-
-    box-shadow:
-        0 10px 20px
-        rgba(0,0,0,.08);
-
-    transition:.3s;
-
-}
-
-
-.timeline-item:hover{
-
-    transform:
-        translateY(-10px);
-
-}
-
-
-.year{
-
-    font-size:2rem;
-
-    color:var(--gold);
-
-    font-weight:700;
-
-    margin-bottom:10px;
-
-}
-
-
-.timeline-item h3{
-
-    margin-bottom:15px;
-
-}
-
-
-.timeline-item p{
-
-    line-height:1.8;
-
-}
-
-
-/* ================================================= */
-/* EVENT */
-/* ================================================= */
-
-#event{
-
-    padding:100px 30px;
-
-    background:#F8F6F2;
-
-    text-align:center;
-
-}
-
-
-.event-title{
-
-    font-family:var(--heading);
-
-    font-size:3rem;
-
-    margin:
-        20px 0 60px;
-
-}
-
-
-.event-container{
-
-    display:flex;
-
-    gap:30px;
-
-    justify-content:center;
-
-    flex-wrap:wrap;
-
-}
-
-
-.event-card{
-
-    width:400px;
-
-    padding:40px;
-
-    background:#FFF;
-
-    border-radius:20px;
-
-    text-align:center;
-
-    box-shadow:
-        0 10px 20px
-        rgba(0,0,0,.08);
-
-}
-
-
-.event-card h3{
-
-    color:var(--gold);
-
-    margin-bottom:20px;
-
-    font-family:var(--heading);
-
-    font-size:2rem;
-
-}
-
-
-.event-card p{
-
-    margin-bottom:15px;
-
-    line-height:1.8;
-
-}
-
-
-.event-button{
-
-    display:inline-block;
-
-    margin-top:10px;
-
-    padding:15px 30px;
-
-    background:var(--olive);
-
-    color:white;
-
-    border-radius:50px;
-
-    text-decoration:none;
-
-    transition:.3s;
-
-}
-
-
-.event-button:hover{
-
-    transform:
-        translateY(-2px);
-
-}
-
-
-/* ================================================= */
-/* GALLERY */
-/* ================================================= */
-
-#gallery{
-
-    padding:100px 30px;
-
-    background:#FFFFFF;
-
-}
-
-
-#gallery h2{
-
-    text-align:center;
-
-    font-size:3rem;
-
-    margin:20px 0 60px;
-
-    font-family:var(--heading);
-
-}
-
-
-.gallery-grid{
-
-    max-width:1200px;
-
-    margin:auto;
-
-    columns:3;
-
-    column-gap:20px;
-
-}
-
-
-.gallery-grid img{
-
-    width:100%;
-
-    margin-bottom:20px;
-
-    border-radius:20px;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-    display:block;
-
-}
-
-
-.gallery-grid img:hover{
-
-    transform:
-        scale(1.03);
-
-}
-
-
-/* ================================================= */
-/* LIGHTBOX */
-/* ================================================= */
-
-#lightbox{
-
-    position:fixed;
-
-    inset:0;
-
-    width:100%;
-
-    height:100%;
-
-    background:
-        rgba(0,0,0,.9);
-
-    display:none;
-
-    justify-content:center;
-
-    align-items:center;
-
-    z-index:9999;
-
-    padding:20px;
-
-}
-
-
-#lightbox-image{
-
-    max-width:90%;
-
-    max-height:90vh;
-
-    border-radius:20px;
-
-}
-
-
-/* ================================================= */
-/* GIFT */
-/* ================================================= */
-
-#gift{
-
-    padding:100px 30px;
-
-    background:white;
-
-    text-align:center;
-
-}
-
-
-#gift h2{
-
-    font-size:3rem;
-
-    margin:20px 0;
-
-    font-family:var(--heading);
-
-}
-
-
-.gift-description{
-
-    max-width:600px;
-
-    margin:auto auto 50px;
-
-    line-height:2;
-
-}
-
-
-.gift-container{
-
-    display:flex;
-
-    gap:30px;
-
-    justify-content:center;
-
-    flex-wrap:wrap;
-
-}
-
-
-.gift-card{
-
-    width:350px;
-
-    padding:40px;
-
-    background:#F8F6F2;
-
-    border-radius:20px;
-
-    box-shadow:
-        0 10px 20px
-        rgba(0,0,0,.08);
-
-}
-
-
-.gift-card h3{
-
-    color:var(--gold);
-
-    margin-bottom:20px;
-
-}
-
-
-.gift-card h4{
-
-    margin:20px 0;
-
-    font-size:1.5rem;
-
-}
-
-
-.gift-card button{
-
-    border:none;
-
-    padding:15px 30px;
-
-    background:var(--olive);
-
-    color:white;
-
-    border-radius:50px;
-
-    cursor:pointer;
-
-    font-family:var(--body);
-
-}
-
-
-/* ================================================= */
-/* RSVP */
-/* ================================================= */
-
-#rsvp{
-
-    padding:100px 30px;
-
-    background:#F8F6F2;
-
-    text-align:center;
-
-}
-
-
-#rsvp h2{
-
-    margin:20px 0;
-
-    font-size:3rem;
-
-    font-family:var(--heading);
-
-}
-
-
-.rsvp-description{
-
-    max-width:600px;
-
-    margin:auto auto 50px;
-
-    line-height:2;
-
-}
-
-
-#rsvpForm{
-
-    max-width:600px;
-
-    margin:auto;
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:20px;
-
-}
-
-
-#rsvpForm input,
-#rsvpForm select,
-#rsvpForm textarea{
-
-    padding:20px;
-
-    border:none;
-
-    border-radius:15px;
-
-    font-family:var(--body);
-
-    background:white;
-
-}
+function copyText(text, message) {
 
+    navigator.clipboard
+        .writeText(text)
+        .then(() => {
 
-#rsvpForm textarea{
+            alert(message);
 
-    min-height:150px;
+        });
 
-    resize:none;
-
-}
-
-
-#rsvpForm button{
-
-    padding:20px;
-
-    border:none;
-
-    border-radius:50px;
-
-    background:var(--gold);
-
-    color:white;
-
-    cursor:pointer;
-
-    font-family:var(--body);
-
-}
-
-
-/* ================================================= */
-/* WISHES */
-/* ================================================= */
-
-#wishes{
-
-    padding:100px 30px;
-
-    background:#FFFFFF;
-
-}
-
-
-#wishes h2{
-
-    text-align:center;
-
-    margin:20px 0;
-
-    font-size:3rem;
-
-    font-family:var(--heading);
-
-}
-
-
-.wish-description{
-
-    max-width:700px;
-
-    margin:auto auto 50px;
-
-    text-align:center;
-
-    line-height:2;
-
-}
-
-
-.wish-container{
-
-    max-width:900px;
-
-    margin:auto;
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:20px;
-
-}
-
-
-.wish-card{
-
-    background:#F8F6F2;
-
-    padding:30px;
-
-    border-radius:20px;
-
-    box-shadow:
-        0 10px 20px
-        rgba(0,0,0,.05);
-
-}
-
-
-.wish-card h4{
-
-    color:var(--gold);
-
-    margin-bottom:10px;
-
-}
-
-
-.wish-card span{
-
-    font-size:.9rem;
-
-    color:var(--olive);
-
-}
-
-
-.wish-card p{
-
-    margin-top:15px;
-
-    line-height:1.8;
-
-}
-
-
-/* ================================================= */
-/* STREAMING */
-/* ================================================= */
-
-#streaming{
-
-    padding:100px 30px;
-
-    background:#F8F6F2;
-
-    text-align:center;
-
-}
-
-
-#streaming h2{
-
-    margin:20px 0;
-
-    font-size:3rem;
-
-    font-family:var(--heading);
-
-}
-
-
-.stream-description{
-
-    max-width:700px;
-
-    margin:auto auto 50px;
-
-    line-height:2;
-
-}
-
-
-.stream-card{
-
-    max-width:500px;
-
-    margin:auto;
-
-    padding:50px;
-
-    background:white;
-
-    border-radius:20px;
-
-    box-shadow:
-        0 10px 20px
-        rgba(0,0,0,.08);
-
-}
-
-
-.stream-card h3{
-
-    color:var(--gold);
-
-    margin-bottom:20px;
-
-    font-family:var(--heading);
-
-    font-size:2rem;
-
-}
-
-
-.stream-button{
-
-    display:inline-block;
-
-    margin-top:30px;
-
-    padding:15px 30px;
-
-    background:#FF0000;
-
-    color:white;
-
-    border:none;
-
-    text-decoration:none;
-
-    border-radius:50px;
-
-    cursor:pointer;
-
-    font-family:var(--body);
-
-}
-
-
-/* ================================================= */
-/* FOOTER */
-/* ================================================= */
-
-footer{
-
-    padding:100px 30px;
-
-    background:var(--olive);
-
-    color:white;
-
-    text-align:center;
-
-}
-
-
-footer h2{
-
-    font-size:3rem;
-
-    font-family:var(--heading);
-
-}
-
-
-footer span{
-
-    color:var(--gold);
-
-}
-
-
-.footer-date{
-
-    margin:20px 0;
-
-}
-
-
-.copyright{
-
-    margin-top:50px;
-
-    opacity:.7;
-
-}
-
-
-.music-credit{
-
-    margin-top:40px;
-
-    padding-top:20px;
-
-    border-top:
-        1px solid
-        rgba(255,255,255,.15);
-
-    font-size:13px;
-
-    color:rgba(255,255,255,.75);
-
-    line-height:1.8;
-
-}
-
-
-.music-credit strong{
-
-    font-weight:600;
-
-    color:white;
-
-}
-
-
-.music-link{
-
-    display:inline-block;
-
-    margin-top:8px;
-
-    color:#F0D49B;
-
-    text-decoration:none;
-
-    font-size:13px;
-
-    transition:.3s;
-
 }
-
 
-.music-link:hover{
+// ======================
+// GALLERY LIGHTBOX
+// ======================
 
-    color:white;
+const galleryImages =
+document.querySelectorAll(
+    ".gallery-grid img"
+);
 
-    text-decoration:underline;
-
-}
+const lightbox =
+document.getElementById(
+    "lightbox"
+);
 
+const lightboxImage =
+document.getElementById(
+    "lightbox-image"
+);
 
-/* ================================================= */
-/* MUSIC BUTTON */
-/* ================================================= */
+if (lightbox && lightboxImage) {
 
-#musicButton{
+    galleryImages.forEach(
+        (image) => {
 
-    position:fixed;
+            image.addEventListener(
+                "click",
 
-    right:20px;
+                () => {
 
-    bottom:20px;
+                    lightbox.style.display =
+                        "flex";
 
-    width:60px;
+                    lightboxImage.src =
+                        image.src;
 
-    height:60px;
+                }
 
-    border:none;
+            );
 
-    border-radius:50%;
+        }
+    );
 
-    background:var(--gold);
+    lightbox.addEventListener(
+        "click",
 
-    color:white;
+        () => {
 
-    font-size:1.5rem;
+            lightbox.style.display =
+                "none";
 
-    cursor:pointer;
+        }
 
-    z-index:999;
+    );
 
 }
-
-
-/* ================================================= */
-/* TOAST */
-/* ================================================= */
-
-#toast{
-
-    position:fixed;
-
-    left:50%;
-
-    bottom:35px;
-
-    transform:
-        translate(-50%,20px);
-
-    background:
-        rgba(46,46,46,.94);
 
-    color:#FFFFFF;
+// ======================
+// RSVP
+// ======================
 
-    padding:13px 22px;
+const rsvpForm =
+document.getElementById(
+    "rsvpForm"
+);
 
-    border-radius:50px;
+if (rsvpForm) {
 
-    font-family:var(--body);
+    rsvpForm.addEventListener(
+        "submit",
 
-    font-size:13px;
+        (e) => {
 
-    line-height:1.5;
+            e.preventDefault();
 
-    text-align:center;
+            const name =
+                document.getElementById(
+                    "name"
+                ).value;
 
-    max-width:
-        calc(100% - 40px);
+            const attendance =
+                document.getElementById(
+                    "attendance"
+                ).value;
 
-    box-shadow:
-        0 10px 30px
-        rgba(0,0,0,.18);
+            const message =
+                document.getElementById(
+                    "message"
+                ).value;
 
-    opacity:0;
+            const whatsappURL =
+                `https://wa.me/6281574397472?text=Nama:%20${name}%0AKehadiran:%20${attendance}%0APesan:%20${message}`;
 
-    visibility:hidden;
+            window.open(
+                whatsappURL,
+                "_blank"
+            );
 
-    pointer-events:none;
+            rsvpForm.reset();
 
-    z-index:100000;
+        }
 
-    transition:
-        opacity .3s ease,
-        transform .3s ease,
-        visibility .3s ease;
+    );
 
 }
 
+// ======================
+// MUSIC BUTTON
+// ======================
 
-#toast.show{
+const music =
+document.getElementById(
+    "bgMusic"
+);
 
-    opacity:1;
+const musicButton =
+document.getElementById(
+    "musicButton"
+);
 
-    visibility:visible;
+if (music && musicButton) {
 
-    transform:
-        translate(-50%,0);
+    musicButton.addEventListener(
+        "click",
 
-}
-
-
-/* ================================================= */
-/* MOBILE */
-/* ================================================= */
-
-@media(max-width:768px){
-
-    #cover h1{
-
-        font-size:3rem;
-
-    }
-
+        () => {
 
-    #quran h2{
+            if (music.paused) {
 
-        font-size:1.5rem;
+                music.play();
 
-    }
+                musicButton.innerHTML =
+                    "❚❚";
 
+            } else {
 
-    .card{
+                music.pause();
 
-        width:100%;
+                musicButton.innerHTML =
+                    "♪";
 
-    }
+            }
 
+        }
 
-    .gallery-grid{
+    );
 
-        columns:2;
-
-    }
-
-
-    #journey h2,
-    #event .event-title,
-    #gallery h2,
-    #gift h2,
-    #rsvp h2,
-    #wishes h2,
-    #streaming h2{
-
-        font-size:2.4rem;
-
-    }
-
 }
-
-
-@media(max-width:500px){
-
-    #cover{
-
-        padding:20px;
-
-    }
-
-
-    #cover h1{
-
-        font-size:2.7rem;
-
-    }
-
-
-    .small-title{
-
-        font-size:12px;
-
-        letter-spacing:4px;
-
-    }
-
-
-    .tagline{
-
-        font-size:.95rem;
-
-    }
-
-
-    .card img{
-
-        height:360px;
-
-    }
-
-
-    .gallery-grid{
-
-        columns:1;
-
-    }
-
-
-    .time-box{
-
-        width:105px;
-
-        padding:25px 15px;
-
-    }
-
-
-    .time-box span{
-
-        font-size:1.7rem;
-
-    }
-
-
-    .event-card,
-    .gift-card,
-    .stream-card{
-
-        width:100%;
-
-        padding:30px 20px;
-
-    }
-
-
-    #musicButton{
-
-        width:52px;
-
-        height:52px;
-
-        right:15px;
-
-        bottom:15px;
-
-    }
-
-
-    #toast{
-
-        bottom:25px;
-
-        font-size:12px;
 
-        padding:12px 18px;
+// ======================
+// LIVE STREAMING
+// ======================
 
-        max-width:
-            calc(100% - 30px);
+function streamAlert() {
 
-    }
+    alert(
+        "Live streaming tidak tersedia saat ini."
+    );
 
 }

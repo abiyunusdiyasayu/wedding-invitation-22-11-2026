@@ -1653,3 +1653,41 @@ footer span{
     }
 
 }
+
+
+/* FIX LAYOUT WEDDING EVENT */
+#event {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+#event .event-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    width: min(calc(100% - 40px), 1000px);
+    margin: 32px auto 0;
+    align-items: stretch;
+}
+
+#event .event-card {
+    position: relative;
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
+    text-align: center;
+}
+
+#event .event-card p {
+    line-height: 1.8;
+}
+
+@media (max-width: 700px) {
+    #event .event-container {
+        grid-template-columns: minmax(0, 1fr);
+        width: min(calc(100% - 32px), 480px);
+        gap: 20px;
+    }
+}
