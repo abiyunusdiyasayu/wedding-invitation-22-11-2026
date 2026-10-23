@@ -1009,101 +1009,127 @@ body{
 }
 
 
+
 /* ================================================= */
 /* RSVP */
 /* ================================================= */
 
-#rsvp{
-
-    padding:100px 30px;
-
-    background:#F8F6F2;
-
-    text-align:center;
-
+#rsvp {
+    padding: 100px 30px;
+    background: #F8F6F2;
+    text-align: center;
 }
 
-
-#rsvp h2{
-
-    margin:20px 0;
-
-    font-size:3rem;
-
-    font-family:var(--heading);
-
+#rsvp .small-title {
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
 }
 
-
-.rsvp-description{
-
-    max-width:600px;
-
-    margin:auto auto 50px;
-
-    line-height:2;
-
+#rsvp h2 {
+    margin: 20px 0;
+    font-size: 3rem;
+    font-family: var(--heading);
+    font-weight: 500;
 }
 
-
-#rsvpForm{
-
-    max-width:600px;
-
-    margin:auto;
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:20px;
-
+.rsvp-description {
+    max-width: 600px;
+    margin: 0 auto 45px;
+    line-height: 1.9;
+    color: #666;
+    font-family: var(--body);
 }
 
+#rsvpForm {
+    max-width: 560px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
 
 #rsvpForm input,
 #rsvpForm select,
-#rsvpForm textarea{
-
-    padding:20px;
-
-    border:none;
-
-    border-radius:15px;
-
-    font-family:var(--body);
-
-    background:white;
-
+#rsvpForm textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 17px 20px;
+    border: 1px solid #E7E0D6;
+    border-radius: 12px;
+    font-family: var(--body);
+    font-size: 14px;
+    color: #333;
+    background: #FFFFFF;
+    outline: none;
+    transition: border-color 0.3s ease,
+                box-shadow 0.3s ease;
 }
 
-
-#rsvpForm textarea{
-
-    min-height:150px;
-
-    resize:none;
-
+#rsvpForm input:focus,
+#rsvpForm select:focus,
+#rsvpForm textarea:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(190, 158, 103, 0.12);
 }
 
-
-#rsvpForm button{
-
-    padding:20px;
-
-    border:none;
-
-    border-radius:50px;
-
-    background:var(--gold);
-
-    color:white;
-
-    cursor:pointer;
-
-    font-family:var(--body);
-
+#rsvpForm textarea {
+    min-height: 140px;
+    resize: vertical;
+    line-height: 1.7;
 }
+
+#rsvpForm button {
+    padding: 16px 28px;
+    border: 1px solid var(--gold);
+    border-radius: 50px;
+    background: var(--gold);
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: var(--body);
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+#rsvpForm button:hover {
+    background: transparent;
+    color: var(--gold);
+}
+
+/* Tampilan HP */
+@media (max-width: 600px) {
+    #rsvp {
+        padding: 75px 20px;
+    }
+
+    #rsvp h2 {
+        font-size: 2.2rem;
+    }
+
+    .rsvp-description {
+        margin-bottom: 32px;
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    #rsvpForm {
+        gap: 15px;
+    }
+
+    #rsvpForm input,
+    #rsvpForm select,
+    #rsvpForm textarea {
+        padding: 15px 16px;
+        font-size: 14px;
+    }
+
+    #rsvpForm button {
+        padding: 15px 24px;
+    }
+}
+
 
 
 /* ================================================= */

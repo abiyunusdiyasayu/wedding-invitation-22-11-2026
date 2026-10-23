@@ -200,54 +200,79 @@ if (lightbox && lightboxImage) {
 
 }
 
-// ======================
-// RSVP
-// ======================
 
-const rsvpForm =
-document.getElementById(
-    "rsvpForm"
-);
+/* ======================
+   RSVP - GOOGLE SHEETS
+====================== */
+
+const rsvpForm = document.getElementById("rsvpForm");
 
 if (rsvpForm) {
+    rsvpForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-    rsvpForm.addEventListener(
-        "submit",
+        const nameInput = document.getElementById("name");
+        const attendanceInput = document.getElementById("attendance");
+        const messageInput = document.getElementById("message");
+        const submitButton = rsvpForm.querySelector(
+            'button[type="submit"]'
+        );
 
-        (e) => {
+        const nama = nameInput.value.trim();
+        const kehadiran = attendanceInput.value;
+        const pesan = messageInput.value.trim();
 
-            e.preventDefault();
-
-            const name =
-                document.getElementById(
-                    "name"
-                ).value;
-
-            const attendance =
-                document.getElementById(
-                    "attendance"
-                ).value;
-
-            const message =
-                document.getElementById(
-                    "message"
-                ).value;
-
-            const whatsappURL =
-                `https://wa.me/6281574397472?text=Nama:%20${name}%0AKehadiran:%20${attendance}%0APesan:%20${message}`;
-
-            window.open(
-                whatsappURL,
-                "_blank"
-            );
-
-            rsvpForm.reset();
-
+        if (!nama || !kehadiran) {
+            alert("Mohon isi nama dan pilihan kehadiran.");
+            return;
         }
 
-    );
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = "Mengirim...";
+        }
 
+        try {
+            const formData = new URLSearchParams();
+            formData.append("nama", nama);
+            formData.append("kehadiran", kehadiran);
+            formData.append("pesan", pesan);
+
+            await fetch(
+                "https://script.google.com/macros/s/AKfycbx2iV9JRcQ65SLTecvG-fi7kn1BzhGuJj9YJuculvYMDib-MVL4R8xfjStwkxRf0jgu/exec",
+                {
+                    method: "POST",
+                    body: formData
+                }
+            );
+
+            // Apps Script dapat mengarahkan fetch ke
+            // halaman Google. Karena itu, respons HTTP
+            // saja tidak membuktikan data berhasil disimpan.
+            // Gunakan status yang jujur dan periksa Sheets.
+            rsvpForm.reset();
+
+            alert(
+                "RSVP telah dikirim. Terima kasih atas konfirmasinya!"
+            );
+
+        } catch (error) {
+            console.error("Pengiriman RSVP gagal:", error);
+
+            alert(
+                "Pengiriman belum dapat dipastikan. " +
+                "Silakan periksa Google Sheets sebelum mencoba lagi."
+            );
+
+        } finally {
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = "Kirim RSVP";
+            }
+        }
+    });
 }
+
 
 // ======================
 // MUSIC BUTTON
