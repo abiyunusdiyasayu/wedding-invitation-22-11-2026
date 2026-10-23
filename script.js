@@ -201,6 +201,7 @@ if (lightbox && lightboxImage) {
 }
 
 
+
 /* ======================
    RSVP - GOOGLE SHEETS
 ====================== */
@@ -211,25 +212,19 @@ if (rsvpForm) {
     rsvpForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        const nameInput = document.getElementById("name");
-        const attendanceInput = document.getElementById("attendance");
-        const messageInput = document.getElementById("message");
-        const submitButton = rsvpForm.querySelector(
-            'button[type="submit"]'
-        );
-
-        const nama = nameInput.value.trim();
-        const kehadiran = attendanceInput.value;
-        const pesan = messageInput.value.trim();
+        const nama = document.getElementById("name").value.trim();
+        const kehadiran = document.getElementById("attendance").value;
+        const pesan = document.getElementById("message").value.trim();
+        const tombol = rsvpForm.querySelector('button[type="submit"]');
 
         if (!nama || !kehadiran) {
             alert("Mohon isi nama dan pilihan kehadiran.");
             return;
         }
 
-        if (submitButton) {
-            submitButton.disabled = true;
-            submitButton.textContent = "Mengirim...";
+        if (tombol) {
+            tombol.disabled = true;
+            tombol.textContent = "Mengirim...";
         }
 
         try {
@@ -242,37 +237,30 @@ if (rsvpForm) {
                 "https://script.google.com/macros/s/AKfycbx2iV9JRcQ65SLTecvG-fi7kn1BzhGuJj9YJuculvYMDib-MVL4R8xfjStwkxRf0jgu/exec",
                 {
                     method: "POST",
+                    mode: "no-cors",
                     body: formData
                 }
             );
 
-            // Apps Script dapat mengarahkan fetch ke
-            // halaman Google. Karena itu, respons HTTP
-            // saja tidak membuktikan data berhasil disimpan.
-            // Gunakan status yang jujur dan periksa Sheets.
-            rsvpForm.reset();
-
             alert(
-                "RSVP telah dikirim. Terima kasih atas konfirmasinya!"
+                "Permintaan RSVP sudah dikirim. " +
+                "Silakan periksa Google Sheets untuk memastikan data tersimpan."
             );
+
+            // Jangan kosongkan formulir dahulu.
+            // Kita tunggu sampai penyimpanan berhasil diverifikasi.
 
         } catch (error) {
-            console.error("Pengiriman RSVP gagal:", error);
-
-            alert(
-                "Pengiriman belum dapat dipastikan. " +
-                "Silakan periksa Google Sheets sebelum mencoba lagi."
-            );
-
+            console.error("Kesalahan pengiriman RSVP:", error);
+            alert("Pengiriman gagal. Silakan coba kembali.");
         } finally {
-            if (submitButton) {
-                submitButton.disabled = false;
-                submitButton.textContent = "Kirim RSVP";
+            if (tombol) {
+                tombol.disabled = false;
+                tombol.textContent = "Kirim RSVP";
             }
         }
     });
 }
-
 
 // ======================
 // MUSIC BUTTON
