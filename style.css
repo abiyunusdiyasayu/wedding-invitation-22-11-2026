@@ -805,67 +805,62 @@ body{
 }
 
 
+
+
 /* ================================================= */
 /* GALLERY */
 /* ================================================= */
 
-#gallery{
-
-    padding:100px 30px;
-
-    background:#FFFFFF;
-
+#gallery {
+    padding: 100px 30px;
+    background: #FFFFFF;
 }
 
-
-#gallery h2{
-
-    text-align:center;
-
-    font-size:3rem;
-
-    margin:20px 0 60px;
-
-    font-family:var(--heading);
-
+#gallery h2 {
+    text-align: center;
+    font-size: 3rem;
+    margin: 20px 0 60px;
+    font-family: var(--heading);
 }
 
-
-.gallery-grid{
-
-    max-width:1200px;
-
-    margin:auto;
-
-    columns:3;
-
-    column-gap:20px;
-
+.gallery-grid {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-
-.gallery-grid img{
-
-    width:100%;
-
-    margin-bottom:20px;
-
-    border-radius:20px;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-    display:block;
-
+.gallery-grid img {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    margin: 0 auto 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: .3s;
+    object-fit: contain;
 }
 
+.gallery-grid img:hover {
+    transform: scale(1.03);
+}
 
-.gallery-grid img:hover{
+/* Tampilan HP */
+@media (max-width: 600px) {
+    #gallery {
+        padding: 70px 20px;
+    }
 
-    transform:
-        scale(1.03);
+    #gallery h2 {
+        font-size: 2.2rem;
+        margin-bottom: 35px;
+    }
 
+    .gallery-grid img {
+        max-width: 100%;
+    }
 }
 
 
@@ -1705,4 +1700,24 @@ footer span{
     font-size: 14px;
     font-weight: 500;
     line-height: 1.4;
+}
+
+/* Gallery: satu foto */
+.gallery-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.gallery-container img {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    margin: 0 auto;
+    object-fit: contain;
+    border-radius: 12px;
 }
