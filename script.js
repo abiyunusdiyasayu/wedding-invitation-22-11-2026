@@ -327,3 +327,13 @@ function streamAlert() {
         guestNameElement.textContent = guestName.trim();
     }
 })();
+
+(() => {
+    const params = new URLSearchParams(window.location.search);
+    const guestName = params.get("to");
+    const nameInput = document.getElementById("name");
+
+    if (nameInput && guestName && guestName.trim()) {
+        nameInput.value = guestName.trim();
+    }
+})();
