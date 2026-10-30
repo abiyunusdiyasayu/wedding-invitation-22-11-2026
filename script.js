@@ -242,10 +242,9 @@ if (rsvpForm) {
                 }
             );
 
-            alert(
-                "Permintaan RSVP sudah dikirim. " +
-                "Silakan periksa Google Sheets untuk memastikan data tersimpan."
-            );
+                if (rsvpModal) {
+                rsvpModal.classList.add("show");
+            }
 
             // Jangan kosongkan formulir dahulu.
             // Kita tunggu sampai penyimpanan berhasil diverifikasi.
@@ -337,3 +336,25 @@ function streamAlert() {
         nameInput.value = guestName.trim();
     }
 })();
+
+/* ======================
+   RSVP MODAL CONTROLS
+====================== */
+
+const rsvpModal = document.getElementById("rsvpModal");
+const closeRsvpModal = document.getElementById("closeRsvpModal");
+
+if (closeRsvpModal && rsvpModal) {
+    closeRsvpModal.addEventListener("click", () => {
+        rsvpModal.classList.remove("show");
+    });
+}
+
+// Tutup popup jika area luar diklik
+if (rsvpModal) {
+    rsvpModal.addEventListener("click", (e) => {
+        if (e.target === rsvpModal) {
+            rsvpModal.classList.remove("show");
+        }
+    });
+}

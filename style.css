@@ -1747,3 +1747,86 @@ footer span{
     object-fit: contain;
     border-radius: 12px;
 }
+
+/* ======================
+   RSVP SUCCESS MODAL
+====================== */
+
+.rsvp-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: rgba(25, 22, 18, 0.55);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.rsvp-modal.show {
+    display: flex;
+}
+
+.rsvp-modal-content {
+    width: 100%;
+    max-width: 430px;
+    padding: 45px 30px;
+    background: #faf7f0;
+    border: 1px solid #d5c09a;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.18);
+    animation: rsvpModalIn 0.35s ease;
+}
+
+.rsvp-modal-icon {
+    color: #b69a70;
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+
+.rsvp-modal-content h2 {
+    color: #8b7450;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 34px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.rsvp-modal-content p {
+    color: #625b50;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.rsvp-modal-message {
+    margin-top: 12px;
+}
+
+#closeRsvpModal {
+    margin-top: 25px;
+    padding: 12px 35px;
+    border: none;
+    border-radius: 2px;
+    background: #b69a70;
+    color: white;
+    font-size: 13px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+#closeRsvpModal:hover {
+    background: #967b53;
+}
+
+@keyframes rsvpModalIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
