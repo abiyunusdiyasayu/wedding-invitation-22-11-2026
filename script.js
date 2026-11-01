@@ -365,18 +365,25 @@ if (rsvpModal) {
 
 const WISHES_API_URL = "https://script.google.com/macros/s/AKfycbx2iV9JRcQ65SLTecvG-fi7kn1BzhGuJj9YJuculvYMDib-MVL4R8xfjStwkxRf0jgu/exec";
 
+
 async function loadRSVPWishes() {
     const container = document.getElementById("wishContainer");
 
     if (!container) return;
 
     try {
-        const response = await fetch(WISHES_API_URL);
+        const response = await fetch(WISHES_API_URL + "?t=" + Date.now(), {
+            cache: "no-store"
+        });
+
         const result = await response.json();
 
         if (!result.success) {
             throw new Error("Gagal mengambil data RSVP.");
         }
+
+        // Bersihkan tampilan lama
+        container.innerHTML = "";
 
         if (!result.data || result.data.length === 0) {
             container.innerHTML = `
@@ -387,7 +394,7 @@ async function loadRSVPWishes() {
             return;
         }
 
-        container.innerHTML = "";
+        let jumlahUcapan = 0;
 
         result.data.forEach((item) => {
             const card = document.createElement("div");
@@ -399,15 +406,27 @@ async function loadRSVPWishes() {
             const kehadiran = document.createElement("span");
             kehadiran.textContent = item.kehadiran;
 
-            const pesan = document.createElement("p");
-            pesan.textContent = item.pesan || "";
-
             card.appendChild(nama);
             card.appendChild(kehadiran);
-            card.appendChild(pesan);
+
+            // Tampilkan ucapan hanya jika tidak kosong
+            if (item.pesan && item.pesan.trim() !== "") {
+                const pesan = document.createElement("p");
+                pesan.textContent = item.pesan;
+
+                card.appendChild(pesan);
+                jumlahUcapan++;
+            }
 
             container.appendChild(card);
         });
+
+        if (jumlahUcapan === 0) {
+            const info = document.createElement("p");
+            info.className = "wish-loading";
+            info.textContent = "Belum ada ucapan dan doa.";
+            container.appendChild(info);
+        }
 
     } catch (error) {
         console.error("Gagal memuat RSVP:", error);
@@ -420,6 +439,7 @@ async function loadRSVPWishes() {
         `;
     }
 }
+
 
 document.addEventListener("DOMContentLoaded", () => {
     loadRSVPWishes();
