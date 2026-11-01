@@ -546,16 +546,57 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+
 /* ======================
    HOME NAVIGATION
 ====================== */
 
-document.querySelector('#bottomNav a[href="#cover"]')
-    ?.addEventListener("click", function (e) {
+const homeButton = document.querySelector(
+    '#bottomNav a[href="#cover"]'
+);
+
+if (homeButton) {
+    homeButton.addEventListener("click", function (e) {
         e.preventDefault();
 
+        const cover = document.getElementById("cover");
+        const content = document.getElementById("invitationContent");
+        const button = document.getElementById("openInvitation");
+        const music = document.getElementById("bgMusic");
+        const bottomNav = document.getElementById("bottomNav");
+
+        // Kembali ke posisi paling atas
         window.scrollTo({
             top: 0,
             behavior: "smooth"
         });
+
+        // Sembunyikan isi undangan
+        if (content) {
+            content.style.display = "none";
+        }
+
+        // Tampilkan kembali cover awal
+        if (cover) {
+            cover.style.display = "flex";
+            cover.style.visibility = "visible";
+            cover.style.opacity = "1";
+        }
+
+        // Aktifkan kembali tombol Buka Undangan
+        if (button) {
+            button.style.display = "";
+        }
+
+        // Hentikan dan reset musik
+        if (music) {
+            music.pause();
+            music.currentTime = 0;
+        }
+
+        // Sembunyikan navigasi sampai undangan dibuka lagi
+        if (bottomNav) {
+            bottomNav.classList.remove("show");
+        }
     });
+}
