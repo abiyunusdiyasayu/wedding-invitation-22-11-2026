@@ -359,11 +359,130 @@ if (rsvpModal) {
     });
 }
 
+
 /* ======================
    LOAD RSVP WISHES
 ====================== */
 
 const WISHES_API_URL = "https://script.google.com/macros/s/AKfycbx2iV9JRcQ65SLTecvG-fi7kn1BzhGuJj9YJuculvYMDib-MVL4R8xfjStwkxRf0jgu/exec";
+
+const WISHES_PER_PAGE = 5;
+
+let allWishes = [];
+let currentWishPage = 1;
+
+
+function renderWishPage() {
+    const container = document.getElementById("wishContainer");
+    const pagination = document.getElementById("wishPagination");
+    const countInfo = document.getElementById("wishCount");
+
+    if (!container || !pagination) return;
+
+    const totalPages = Math.ceil(allWishes.length / WISHES_PER_PAGE);
+
+    // Jika belum ada ucapan
+    if (totalPages === 0) {
+        container.innerHTML = `
+            <p class="wish-loading">
+                Belum ada ucapan dan doa.
+            </p>
+        `;
+
+        pagination.innerHTML = "";
+
+        if (countInfo) {
+            countInfo.textContent = "Belum ada ucapan.";
+        }
+
+        return;
+    }
+
+    currentWishPage = Math.min(currentWishPage, totalPages);
+
+    const startIndex = (currentWishPage - 1) * WISHES_PER_PAGE;
+
+    const pageWishes = allWishes.slice(
+        startIndex,
+        startIndex + WISHES_PER_PAGE
+    );
+
+    // Informasi jumlah ucapan
+    const firstItem = startIndex + 1;
+    const lastItem = Math.min(
+        startIndex + pageWishes.length,
+        allWishes.length
+    );
+
+    if (countInfo) {
+        countInfo.textContent =
+            `Menampilkan ${firstItem}–${lastItem} dari ${allWishes.length} ucapan`;
+    }
+
+    // Tampilkan kartu ucapan
+    container.innerHTML = "";
+
+    pageWishes.forEach((item) => {
+        const card = document.createElement("div");
+        card.className = "wish-card";
+
+        const nama = document.createElement("h4");
+        nama.textContent = item.nama;
+
+        const kehadiran = document.createElement("span");
+        kehadiran.textContent = item.kehadiran;
+
+        const pesan = document.createElement("p");
+        pesan.textContent = item.pesan;
+
+        card.appendChild(nama);
+        card.appendChild(kehadiran);
+        card.appendChild(pesan);
+
+        container.appendChild(card);
+    });
+
+    // Navigasi pagination
+    pagination.innerHTML = "";
+
+    const previous = document.createElement("button");
+    previous.textContent = "‹";
+    previous.disabled = currentWishPage === 1;
+
+    previous.addEventListener("click", () => {
+        currentWishPage--;
+        renderWishPage();
+    });
+
+    pagination.appendChild(previous);
+
+    for (let page = 1; page <= totalPages; page++) {
+        const button = document.createElement("button");
+        button.textContent = page;
+
+        if (page === currentWishPage) {
+            button.classList.add("active");
+        }
+
+        button.addEventListener("click", () => {
+            currentWishPage = page;
+            renderWishPage();
+        });
+
+        pagination.appendChild(button);
+    }
+
+    const next = document.createElement("button");
+    next.textContent = "›";
+    next.disabled = currentWishPage === totalPages;
+
+    next.addEventListener("click", () => {
+        currentWishPage++;
+        renderWishPage();
+    });
+
+    pagination.appendChild(next);
+}
 
 
 async function loadRSVPWishes() {
@@ -372,9 +491,10 @@ async function loadRSVPWishes() {
     if (!container) return;
 
     try {
-        const response = await fetch(WISHES_API_URL + "?t=" + Date.now(), {
-            cache: "no-store"
-        });
+        const response = await fetch(
+            WISHES_API_URL + "?t=" + Date.now(),
+            { cache: "no-store" }
+        );
 
         const result = await response.json();
 
@@ -382,51 +502,12 @@ async function loadRSVPWishes() {
             throw new Error("Gagal mengambil data RSVP.");
         }
 
-        // Bersihkan tampilan lama
-        container.innerHTML = "";
+        // Hanya ambil ucapan yang diizinkan
+        allWishes = (result.data || []).filter(
+    item => item.pesan && item.pesan.trim() !== ""
+);
 
-        if (!result.data || result.data.length === 0) {
-            container.innerHTML = `
-                <p class="wish-loading">
-                    Belum ada ucapan dan doa.
-                </p>
-            `;
-            return;
-        }
-
-        let jumlahUcapan = 0;
-
-        result.data.forEach((item) => {
-            const card = document.createElement("div");
-            card.className = "wish-card";
-
-            const nama = document.createElement("h4");
-            nama.textContent = item.nama;
-
-            const kehadiran = document.createElement("span");
-            kehadiran.textContent = item.kehadiran;
-
-            card.appendChild(nama);
-            card.appendChild(kehadiran);
-
-            // Tampilkan ucapan hanya jika tidak kosong
-            if (item.pesan && item.pesan.trim() !== "") {
-                const pesan = document.createElement("p");
-                pesan.textContent = item.pesan;
-
-                card.appendChild(pesan);
-                jumlahUcapan++;
-            }
-
-            container.appendChild(card);
-        });
-
-        if (jumlahUcapan === 0) {
-            const info = document.createElement("p");
-            info.className = "wish-loading";
-            info.textContent = "Belum ada ucapan dan doa.";
-            container.appendChild(info);
-        }
+renderWishPage();
 
     } catch (error) {
         console.error("Gagal memuat RSVP:", error);
