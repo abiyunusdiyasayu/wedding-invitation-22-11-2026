@@ -547,6 +547,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+
+
 /* ======================
    HOME NAVIGATION
 ====================== */
@@ -565,10 +567,10 @@ if (homeButton) {
         const music = document.getElementById("bgMusic");
         const bottomNav = document.getElementById("bottomNav");
 
-        // Kembali ke posisi paling atas
+        // Kembali langsung ke posisi paling atas
         window.scrollTo({
             top: 0,
-            behavior: "smooth"
+            behavior: "instant"
         });
 
         // Sembunyikan isi undangan
@@ -576,14 +578,14 @@ if (homeButton) {
             content.style.display = "none";
         }
 
-        // Tampilkan kembali cover awal
+        // Tampilkan kembali cover THE WEDDING OF
         if (cover) {
             cover.style.display = "flex";
             cover.style.visibility = "visible";
             cover.style.opacity = "1";
         }
 
-        // Aktifkan kembali tombol Buka Undangan
+        // Tampilkan kembali tombol Buka Undangan
         if (button) {
             button.style.display = "";
         }
@@ -594,7 +596,7 @@ if (homeButton) {
             music.currentTime = 0;
         }
 
-        // Sembunyikan navigasi sampai undangan dibuka lagi
+        // Sembunyikan navigasi bawah
         if (bottomNav) {
             bottomNav.classList.remove("show");
         }
