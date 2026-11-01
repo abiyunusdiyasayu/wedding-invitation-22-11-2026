@@ -540,37 +540,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* ======================
-   BOTTOM NAVIGATION
-====================== */
-
-function updateBottomNav() {
-    const bottomNav = document.getElementById("bottomNav");
-
-    if (!bottomNav) return;
-
-    const scrollPosition =
-        window.scrollY + window.innerHeight;
-
-    const pageHeight =
-        document.documentElement.scrollHeight;
-
-    if (scrollPosition >= pageHeight - 100) {
-        bottomNav.classList.add("show");
-    } else {
-        bottomNav.classList.remove("show");
-    }
-}
-
-window.addEventListener("scroll", updateBottomNav, {
-    passive: true
-});
-
-window.addEventListener("resize", updateBottomNav);
-
-updateBottomNav();
-
-
-/* ======================
    HOME NAVIGATION
 ====================== */
 
