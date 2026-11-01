@@ -358,3 +358,72 @@ if (rsvpModal) {
         }
     });
 }
+
+/* ======================
+   LOAD RSVP WISHES
+====================== */
+
+const WISHES_API_URL = "https://script.google.com/macros/s/AKfycbx2iV9JRcQ65SLTecvG-fi7kn1BzhGuJj9YJuculvYMDib-MVL4R8xfjStwkxRf0jgu/exec";
+
+async function loadRSVPWishes() {
+    const container = document.getElementById("wishContainer");
+
+    if (!container) return;
+
+    try {
+        const response = await fetch(WISHES_API_URL);
+        const result = await response.json();
+
+        if (!result.success) {
+            throw new Error("Gagal mengambil data RSVP.");
+        }
+
+        if (!result.data || result.data.length === 0) {
+            container.innerHTML = `
+                <p class="wish-loading">
+                    Belum ada ucapan dan doa.
+                </p>
+            `;
+            return;
+        }
+
+        container.innerHTML = "";
+
+        result.data.forEach((item) => {
+            const card = document.createElement("div");
+            card.className = "wish-card";
+
+            const nama = document.createElement("h4");
+            nama.textContent = item.nama;
+
+            const kehadiran = document.createElement("span");
+            kehadiran.textContent = item.kehadiran;
+
+            const pesan = document.createElement("p");
+            pesan.textContent = item.pesan || "";
+
+            card.appendChild(nama);
+            card.appendChild(kehadiran);
+            card.appendChild(pesan);
+
+            container.appendChild(card);
+        });
+
+    } catch (error) {
+        console.error("Gagal memuat RSVP:", error);
+
+        container.innerHTML = `
+            <p class="wish-loading">
+                Ucapan belum dapat dimuat.
+                Silakan coba beberapa saat lagi.
+            </p>
+        `;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    loadRSVPWishes();
+
+    // Perbarui daftar setiap 30 detik
+    setInterval(loadRSVPWishes, 30000);
+});
