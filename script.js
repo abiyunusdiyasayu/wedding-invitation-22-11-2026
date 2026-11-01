@@ -1,7 +1,10 @@
 
+
 /* ======================
    LOADER
 ====================== */
+
+const loaderStartTime = Date.now();
 
 function hideLoader() {
     const loader = document.getElementById("loader");
@@ -18,56 +21,16 @@ function hideLoader() {
     }
 }
 
-window.addEventListener("load", hideLoader);
+window.addEventListener("load", () => {
+    const elapsed = Date.now() - loaderStartTime;
+    const remaining = Math.max(0, 2000 - elapsed);
 
-// Pengaman jika event load tidak berjalan
-setTimeout(hideLoader, 5000);
-
-// ======================
-// OPEN INVITATION
-// ======================
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    const cover = document.getElementById("cover");
-    const content = document.getElementById("invitationContent");
-    const button = document.getElementById("openInvitation");
-    const music = document.getElementById("bgMusic");
-
-    if (content) {
-        content.style.display = "none";
-    }
-
-    if (button) {
-
-        button.addEventListener("click", () => {
-
-            if (cover) {
-                cover.style.display = "none";
-            }
-
-            if (content) {
-                content.style.display = "block";
-
-                content.scrollIntoView({
-                    behavior: "smooth"
-                });
-            }
-
-            if (music) {
-                music.play().catch(() => {
-                    console.log(
-                        "Autoplay diblokir browser."
-                    );
-                });
-            }
-
-            button.style.display = "none";
-        });
-
-    }
-
+    setTimeout(hideLoader, remaining);
 });
+
+// Pengaman jika halaman terlalu lama dimuat
+setTimeout(hideLoader, 10000);
+
 
 // ======================
 // COUNTDOWN
