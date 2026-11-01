@@ -1888,7 +1888,6 @@ footer span{
 
 
 
-
 /* ================================================= */
 /* BOTTOM NAVIGATION */
 /* ================================================= */
@@ -1897,7 +1896,7 @@ footer span{
     position: fixed;
     left: 50%;
     bottom: calc(20px + env(safe-area-inset-bottom));
-    transform: translateX(-50%);
+    transform: translate(-50%, 10px);
     z-index: 9990;
 
     display: flex;
@@ -1918,9 +1917,22 @@ footer span{
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
 
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.4s ease,
+        visibility 0.4s ease,
+        transform 0.4s ease;
+}
+
+/* Navigasi setelah undangan dibuka */
+#bottomNav.show {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
+    transform: translate(-50%, 0);
 }
 
 #bottomNav a {

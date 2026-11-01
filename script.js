@@ -71,6 +71,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
 
+// Tampilkan navigasi bawah
+const bottomNav = document.getElementById("bottomNav");
+
+if (bottomNav) {
+    bottomNav.classList.add("show");
+}
+
             button.style.display = "none";
         });
     }
