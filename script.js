@@ -568,3 +568,18 @@ window.addEventListener("scroll", updateBottomNav, {
 window.addEventListener("resize", updateBottomNav);
 
 updateBottomNav();
+
+
+/* ======================
+   HOME NAVIGATION
+====================== */
+
+document.querySelector('#bottomNav a[href="#cover"]')
+    ?.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
