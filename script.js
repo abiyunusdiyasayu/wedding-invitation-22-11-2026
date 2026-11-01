@@ -32,6 +32,52 @@ window.addEventListener("load", () => {
 setTimeout(hideLoader, 10000);
 
 
+/* ======================
+   OPEN INVITATION
+====================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const cover = document.getElementById("cover");
+    const content = document.getElementById("invitationContent");
+    const button = document.getElementById("openInvitation");
+    const music = document.getElementById("bgMusic");
+
+    // Sembunyikan isi undangan sebelum tombol diklik
+    if (content) {
+        content.style.display = "none";
+    }
+
+    // Aksi tombol Buka Undangan
+    if (button) {
+        button.addEventListener("click", () => {
+
+            if (cover) {
+                cover.style.display = "none";
+            }
+
+            if (content) {
+                content.style.display = "block";
+
+                content.scrollIntoView({
+                    behavior: "smooth"
+                });
+            }
+
+            // Putar musik
+            if (music) {
+                music.play().catch(() => {
+                    console.log("Autoplay diblokir browser.");
+                });
+            }
+
+            button.style.display = "none";
+        });
+    }
+
+});
+
+
 // ======================
 // COUNTDOWN
 // ======================
