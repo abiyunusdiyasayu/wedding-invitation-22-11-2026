@@ -388,7 +388,8 @@ let allWishes = [];
 let currentWishPage = 1;
 
 
-function renderWishPage() {
+
+function renderWishPage(scrollTarget = null) {
     const container = document.getElementById("wishContainer");
     const pagination = document.getElementById("wishPagination");
     const countInfo = document.getElementById("wishCount");
@@ -414,7 +415,10 @@ function renderWishPage() {
         return;
     }
 
-    currentWishPage = Math.min(currentWishPage, totalPages);
+    currentWishPage = Math.max(
+        1,
+        Math.min(currentWishPage, totalPages)
+    );
 
     const startIndex = (currentWishPage - 1) * WISHES_PER_PAGE;
 
@@ -462,18 +466,22 @@ function renderWishPage() {
     pagination.innerHTML = "";
 
     const previous = document.createElement("button");
+    previous.type = "button";
     previous.textContent = "‹";
     previous.disabled = currentWishPage === 1;
 
     previous.addEventListener("click", () => {
-        currentWishPage--;
-        renderWishPage();
+        if (currentWishPage > 1) {
+            currentWishPage--;
+            renderWishPage("last");
+        }
     });
 
     pagination.appendChild(previous);
 
     for (let page = 1; page <= totalPages; page++) {
         const button = document.createElement("button");
+        button.type = "button";
         button.textContent = page;
 
         if (page === currentWishPage) {
@@ -482,23 +490,51 @@ function renderWishPage() {
 
         button.addEventListener("click", () => {
             currentWishPage = page;
-            renderWishPage();
+            renderWishPage("first");
         });
 
         pagination.appendChild(button);
     }
 
     const next = document.createElement("button");
+    next.type = "button";
     next.textContent = "›";
     next.disabled = currentWishPage === totalPages;
 
     next.addEventListener("click", () => {
-        currentWishPage++;
-        renderWishPage();
+        if (currentWishPage < totalPages) {
+            currentWishPage++;
+            renderWishPage("first");
+        }
     });
 
     pagination.appendChild(next);
+
+    // Scroll halus ke kartu yang dituju
+    if (scrollTarget) {
+        requestAnimationFrame(() => {
+            const cards = container.querySelectorAll(".wish-card");
+
+            if (!cards.length) return;
+
+            const targetCard =
+                scrollTarget === "last"
+                    ? cards[cards.length - 1]
+                    : cards[0];
+
+            const targetPosition =
+                targetCard.getBoundingClientRect().top +
+                window.scrollY -
+                (window.innerHeight * 0.35);
+
+            window.scrollTo({
+                top: Math.max(0, targetPosition),
+                behavior: "smooth"
+            });
+        });
+    }
 }
+
 
 
 async function loadRSVPWishes() {
