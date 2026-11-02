@@ -23,7 +23,7 @@ function hideLoader() {
 
 window.addEventListener("load", () => {
     const elapsed = Date.now() - loaderStartTime;
-    const remaining = Math.max(0, 2000 - elapsed);
+    const remaining = Math.max(0, 4000 - elapsed);
 
     setTimeout(hideLoader, remaining);
 });
