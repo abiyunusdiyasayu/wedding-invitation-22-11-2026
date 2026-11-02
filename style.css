@@ -1988,3 +1988,49 @@ html {
     scroll-behavior: smooth;
     scroll-padding-top: 20px;
 }
+
+/* TOMBOL TAMBAHKAN KE KALENDER */
+.calendar-btn {
+    display: inline-block;
+    margin: 8px 4px 0;
+    padding: 11px 20px;
+
+    color: #B58F58;
+    background: transparent;
+    border: 1px solid #C9A66B;
+    border-radius: 30px;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+
+    transition: all 0.3s ease;
+}
+
+.calendar-btn:hover {
+    color: #FFFFFF;
+    background: #C9A66B;
+    border-color: #C9A66B;
+}
+
+/* ICON TOMBOL WEDDING EVENT */
+
+.event-card .location-btn,
+.event-card .calendar-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.event-card .btn-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.event-card .location-btn .btn-icon {
+    width: 17px;
+    height: 17px;
+}
