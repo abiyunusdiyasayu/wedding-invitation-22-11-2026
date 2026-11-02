@@ -1402,26 +1402,36 @@ footer span{
     display:inline-block;
 
     margin-top:8px;
+    margin-left:8px;
 
-    color:#F0D49B;
+    padding:5px 12px;
+
+    color:rgba(255,244,220,.9);
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(240,212,155,.55);
+
+    border-radius:30px;
 
     text-decoration:none;
 
-    font-size:13px;
+    font-size:12px;
 
-    transition:.3s;
+    transition:.3s ease;
 
 }
 
 
 .music-link:hover{
 
-    color:white;
+    color:#FFFFFF;
 
-    text-decoration:underline;
+    background:rgba(255,255,255,.10);
+
+    border-color:rgba(240,212,155,.85);
 
 }
-
 
 /* ================================================= */
 /* MUSIC BUTTON */
