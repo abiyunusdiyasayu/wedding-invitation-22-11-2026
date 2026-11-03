@@ -2099,3 +2099,30 @@ html {
     }
 
 }
+
+/* ORNAMENT DIVIDER */
+
+.ornament-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    max-width: 180px;
+    margin: 55px auto 45px;
+}
+
+.ornament-divider span {
+    width: 55px;
+    height: 1px;
+    background: #C9A66B;
+    opacity: 0.65;
+}
+
+.ornament-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    max-width: 180px;
+    margin: 35px auto 45px;
+}
